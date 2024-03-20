@@ -1,0 +1,18 @@
+
+@media screen and (min-width: 600px) and (max-width: 1140px) {
+    .MediaContainer {
+        margin-top: 6rem;
+    }
+}
+
+@media screen and (min-width: 1141px) and (max-width: 1185px) {
+    .MediaContainer {
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .MediaContainer {
+        border: "100px solid red"
+    }
+}
