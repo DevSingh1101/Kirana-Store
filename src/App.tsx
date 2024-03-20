@@ -10,8 +10,8 @@ function App() {
             <ShopProvider>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<OrderPage />} />
-                        <Route path="confirm" element={<ConfirmOrderPage />} />
+                        <Route path="*" element={<OrderPage />} />
+                        <Route path="/confirm" element={<ConfirmOrderPage />} />
                     </Routes>
                 </BrowserRouter>
             </ShopProvider>
