@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Kirana-Store/static/css/main.6c66e9e1.css",
-    "main.js": "/Kirana-Store/static/js/main.b042f1d2.js",
+    "main.js": "/Kirana-Store/static/js/main.0ea5dc32.js",
     "static/js/453.03c8fa57.chunk.js": "/Kirana-Store/static/js/453.03c8fa57.chunk.js",
     "static/media/19logo.jpg": "/Kirana-Store/static/media/19logo.0781f31cd7dca1089ce0.jpg",
     "index.html": "/Kirana-Store/index.html",
     "main.6c66e9e1.css.map": "/Kirana-Store/static/css/main.6c66e9e1.css.map",
-    "main.b042f1d2.js.map": "/Kirana-Store/static/js/main.b042f1d2.js.map",
+    "main.0ea5dc32.js.map": "/Kirana-Store/static/js/main.0ea5dc32.js.map",
     "453.03c8fa57.chunk.js.map": "/Kirana-Store/static/js/453.03c8fa57.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6c66e9e1.css",
-    "static/js/main.b042f1d2.js"
+    "static/js/main.0ea5dc32.js"
   ]
 }
