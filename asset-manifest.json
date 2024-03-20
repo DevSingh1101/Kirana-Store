@@ -1,18 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.2d441587.chunk.css",
-    "main.js": "/static/js/main.5910f46c.chunk.js",
-    "main.js.map": "/static/js/main.5910f46c.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.8f7e4a7b.js",
-    "runtime~main.js.map": "/static/js/runtime~main.8f7e4a7b.js.map",
-    "static/js/2.162e3bb7.chunk.js": "/static/js/2.162e3bb7.chunk.js",
-    "static/js/2.162e3bb7.chunk.js.map": "/static/js/2.162e3bb7.chunk.js.map",
-    "static/js/3.cd61f0cc.chunk.js": "/static/js/3.cd61f0cc.chunk.js",
-    "static/js/3.cd61f0cc.chunk.js.map": "/static/js/3.cd61f0cc.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.dd00ec7c650f60d54f2161e0b6682b53.js": "/precache-manifest.dd00ec7c650f60d54f2161e0b6682b53.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.2d441587.chunk.css.map": "/static/css/main.2d441587.chunk.css.map",
-    "static/media/19logo.jpg": "/static/media/19logo.2502c0aa.jpg"
-  }
+    "main.css": "/Kirana-Store/static/css/main.6c66e9e1.css",
+    "main.js": "/Kirana-Store/static/js/main.b042f1d2.js",
+    "static/js/453.03c8fa57.chunk.js": "/Kirana-Store/static/js/453.03c8fa57.chunk.js",
+    "static/media/19logo.jpg": "/Kirana-Store/static/media/19logo.0781f31cd7dca1089ce0.jpg",
+    "index.html": "/Kirana-Store/index.html",
+    "main.6c66e9e1.css.map": "/Kirana-Store/static/css/main.6c66e9e1.css.map",
+    "main.b042f1d2.js.map": "/Kirana-Store/static/js/main.b042f1d2.js.map",
+    "453.03c8fa57.chunk.js.map": "/Kirana-Store/static/js/453.03c8fa57.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6c66e9e1.css",
+    "static/js/main.b042f1d2.js"
+  ]
 }
