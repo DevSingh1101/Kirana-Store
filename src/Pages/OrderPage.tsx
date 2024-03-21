@@ -2,19 +2,12 @@ import { Button } from "@mui/material";
 import AppBarNav from "../Components/OrderPageComp/AppBarNav";
 import { IProducts, categories } from "../Constants/Enum";
 import CategoryViewer from "../Components/OrderPageComp/CategoryViewer";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import "./OrderPage.css";
-import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";
 
 const OrderPage = () => {
     const { state } = useContext(ShopContext);
-
-    const navigate = useNavigate();
-
-    const handleOrderConfirmation = () => {
-        navigate("/confirm");
-    };
 
     return (
         <div
@@ -36,7 +29,11 @@ const OrderPage = () => {
                     height: "10%",
                 }}
             >
-                <AppBarNav key={1} categories={categories} />
+                <AppBarNav
+                    key={1}
+                    categories={categories}
+                    cartVisibility={true}
+                />
             </div>
             <div
                 className="MediaContainer"
@@ -67,23 +64,6 @@ const OrderPage = () => {
                     }
                 )}
             </div>
-            <Button
-                title="Confirm Order"
-                sx={{
-                    padding: "0.75rem",
-                    width: "max-content",
-                    borderRadius: "0.75rem",
-                    backgroundColor: "#0099ff",
-                    color: "#fff",
-                    fontWeight: "bolder",
-                    ":hover": { backgroundColor: "#0033cc", scale: "1.1" },
-                }}
-                onClick={() => {
-                    handleOrderConfirmation();
-                }}
-            >
-                Confirm Order
-            </Button>
         </div>
     );
 };

@@ -14,18 +14,26 @@ import { categoryValueMap } from "../../Constants/Enum";
 import logo from "../../Assets/19logo.jpg";
 import CartIcon from "../CartIcon";
 import { ShopContext } from "../../Context/ShopContext";
+import { useNavigate } from "react-router-dom";
 
 interface AppBarProps {
     categories?: string[];
+    cartVisibility?: boolean;
 }
 
 const drawerWidth = 240;
-const AppBarNav = ({ categories }: AppBarProps) => {
+const AppBarNav = ({ categories, cartVisibility }: AppBarProps) => {
     const [expanded, setExpanded] = useState(true);
     const { cartItems } = useContext(ShopContext);
 
     const handleDrawerToggle = () => {
         setExpanded(!expanded);
+    };
+
+    const navigate = useNavigate();
+
+    const handleOrderConfirmation = () => {
+        navigate("/confirm");
     };
 
     const handleCategoryClick = (event: any) => {
@@ -72,7 +80,6 @@ const AppBarNav = ({ categories }: AppBarProps) => {
                         {category}
                     </Button>
                 ))}
-                <CartIcon badgeContent={cartItems} />
             </Box>
         </Box>
     );
@@ -150,8 +157,15 @@ const AppBarNav = ({ categories }: AppBarProps) => {
                                 {category}
                             </Button>
                         ))}
-                        <CartIcon badgeContent={cartItems} />
                     </Box>
+                    {cartVisibility ? (
+                        <CartIcon
+                            badgeContent={cartItems}
+                            onClickHandler={() => {
+                                handleOrderConfirmation();
+                            }}
+                        />
+                    ) : null}
                 </Toolbar>
             </AppBar>
             <nav>

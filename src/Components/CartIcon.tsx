@@ -12,11 +12,12 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 
 interface CartIconProps {
     badgeContent: number;
+    onClickHandler: () => void;
 }
 
-const CartIcon = ({ badgeContent }: CartIconProps) => {
+const CartIcon = ({ badgeContent, onClickHandler }: CartIconProps) => {
     return (
-        <IconButton aria-label="cart">
+        <IconButton aria-label="cart" onClick={onClickHandler}>
             <StyledBadge badgeContent={badgeContent} color="info" max={9}>
                 <ShoppingCartIcon sx={{ color: "white" }} />
             </StyledBadge>
