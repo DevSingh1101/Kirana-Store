@@ -24,7 +24,7 @@ interface AppBarProps {
 const drawerWidth = 240;
 const AppBarNav = ({ categories, cartVisibility }: AppBarProps) => {
     const [expanded, setExpanded] = useState(true);
-    const { cartItems } = useContext(ShopContext);
+    const cartItems = 1;
 
     const handleDrawerToggle = () => {
         setExpanded(!expanded);

@@ -4,12 +4,16 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import StickyHeadTable from "../Components/StickyHeaderTable";
 import { useContext } from "react";
 import { ShopContext } from "../Context/ShopContext";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmOrderPage = () => {
+    let pathname =
+        "http://wa.me/918114430657?text=Hello!%0AI%20want%20to%20order%20the%20following%20items%20from%20your%20store%0A%0A";
     const { state } = useContext(ShopContext);
 
     function handleOrderConfirmation() {
         console.log("Whatsapp order done!!");
+        window.location.href = pathname;
     }
 
     function constructProductsRow(state: any): any[] {

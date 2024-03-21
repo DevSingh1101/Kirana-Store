@@ -26,7 +26,7 @@ const CartIcon = ({ badgeContent, onClickHandler }: CartIconProps) => {
             aria-label="cart"
             onClick={onClickHandler}
         >
-            <StyledBadge badgeContent={badgeContent} color="info" max={9}>
+            <StyledBadge color="info" max={9}>
                 <ShoppingCartIcon sx={{ padding: "0 auto", color: "white" }} />
             </StyledBadge>
         </IconButton>
