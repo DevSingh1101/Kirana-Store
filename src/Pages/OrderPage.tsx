@@ -1,7 +1,6 @@
-import { Button } from "@mui/material";
-import AppBarNav from "../Components/OrderPageComp/AppBarNav";
+import AppBarNav from "../Components/AppBarNav";
 import { IProducts, categories } from "../Constants/Enum";
-import CategoryViewer from "../Components/OrderPageComp/CategoryViewer";
+import CategoryViewer from "../Components/CategoryViewer";
 import { useContext } from "react";
 import "./OrderPage.css";
 import { ShopContext } from "../Context/ShopContext";

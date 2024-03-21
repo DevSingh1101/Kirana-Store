@@ -1,7 +1,7 @@
 import { MenuItem, TextField } from "@mui/material";
-import { IProducts, units } from "../../Constants/Enum";
+import { IProducts, units } from "../Constants/Enum";
 import { useContext } from "react";
-import { ShopContext } from "../../Context/ShopContext";
+import { ShopContext } from "../Context/ShopContext";
 
 interface ProductsViewProps {
     products: IProducts[];

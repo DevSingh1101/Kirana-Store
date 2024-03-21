@@ -1,10 +1,9 @@
-import AppBarNav from "../Components/OrderPageComp/AppBarNav";
+import AppBarNav from "../Components/AppBarNav";
 import { Button } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import StickyHeadTable from "../Components/StickyHeaderTable";
 import { useContext } from "react";
 import { ShopContext } from "../Context/ShopContext";
-import { useNavigate } from "react-router-dom";
 
 const ConfirmOrderPage = () => {
     let pathname =

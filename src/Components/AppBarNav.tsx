@@ -10,10 +10,9 @@ import {
 } from "@mui/material";
 import { useContext, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { categoryValueMap } from "../../Constants/Enum";
-import logo from "../../Assets/19logo.jpg";
-import CartIcon from "../CartIcon";
-import { ShopContext } from "../../Context/ShopContext";
+import { categoryValueMap } from "../Constants/Enum";
+import logo from "../Assets/19logo.jpg";
+import CartIcon from "./CartIcon";
 import { useNavigate } from "react-router-dom";
 
 interface AppBarProps {
