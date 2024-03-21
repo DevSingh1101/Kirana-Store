@@ -93,6 +93,7 @@ const AppBarNav = ({ categories, cartVisibility }: AppBarProps) => {
                         display: "flex",
                         flexWrap: "wrap",
                         alignItems: "center",
+                        justifyContent: "center",
                     }}
                 >
                     <IconButton

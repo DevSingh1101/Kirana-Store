@@ -12,12 +12,11 @@ const OrderPage = () => {
     return (
         <div
             style={{
-                height: "100vh",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 alignItems: "center",
-                gap: "0.75rem",
                 paddingBottom: "0.5rem",
             }}
         >
@@ -40,10 +39,10 @@ const OrderPage = () => {
                 style={{
                     backgroundColor: "#0099ff",
                     padding: "0rem 0.5rem",
-                    width: "800px",
-                    height: "800px",
+                    width: "100%",
+                    height: "90%",
                     overflow: "auto",
-                    maxWidth: "100%",
+                    maxWidth: "800px",
                     scrollbarColor: "#fff #2E67F8",
                     borderTopLeftRadius: "1.5rem",
                     borderBottomLeftRadius: "1.5rem",

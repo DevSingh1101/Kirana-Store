@@ -3,8 +3,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     "& .MuiBadge-badge": {
-        right: -3,
-        top: 13,
+        right: 0,
+        top: 10,
         border: `2px solid ${theme.palette.background.paper}`,
         padding: "0 4px",
     },
@@ -17,9 +17,17 @@ interface CartIconProps {
 
 const CartIcon = ({ badgeContent, onClickHandler }: CartIconProps) => {
     return (
-        <IconButton aria-label="cart" onClick={onClickHandler}>
+        <IconButton
+            sx={{
+                ":hover": {
+                    backgroundColor: "#0033cc",
+                },
+            }}
+            aria-label="cart"
+            onClick={onClickHandler}
+        >
             <StyledBadge badgeContent={badgeContent} color="info" max={9}>
-                <ShoppingCartIcon sx={{ color: "white" }} />
+                <ShoppingCartIcon sx={{ padding: "0 auto", color: "white" }} />
             </StyledBadge>
         </IconButton>
     );
