@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import AppBarNav from "../Components/OrderPageComp/AppBarNav";
 import { IProducts, categories } from "../Constants/Enum";
 import CategoryViewer from "../Components/OrderPageComp/CategoryViewer";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./OrderPage.css";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";

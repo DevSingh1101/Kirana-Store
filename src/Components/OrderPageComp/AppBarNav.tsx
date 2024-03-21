@@ -8,10 +8,12 @@ import {
     Toolbar,
     Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { categoryValueMap } from "../../Constants/Enum";
 import logo from "../../Assets/19logo.jpg";
+import CartIcon from "../CartIcon";
+import { ShopContext } from "../../Context/ShopContext";
 
 interface AppBarProps {
     categories?: string[];
@@ -20,6 +22,7 @@ interface AppBarProps {
 const drawerWidth = 240;
 const AppBarNav = ({ categories }: AppBarProps) => {
     const [expanded, setExpanded] = useState(true);
+    const { cartItems } = useContext(ShopContext);
 
     const handleDrawerToggle = () => {
         setExpanded(!expanded);
@@ -69,6 +72,7 @@ const AppBarNav = ({ categories }: AppBarProps) => {
                         {category}
                     </Button>
                 ))}
+                <CartIcon badgeContent={cartItems} />
             </Box>
         </Box>
     );
@@ -146,6 +150,7 @@ const AppBarNav = ({ categories }: AppBarProps) => {
                                 {category}
                             </Button>
                         ))}
+                        <CartIcon badgeContent={cartItems} />
                     </Box>
                 </Toolbar>
             </AppBar>
