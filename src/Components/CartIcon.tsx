@@ -25,7 +25,12 @@ const CartIcon = ({ badgeContent, onClickHandler }: CartIconProps) => {
             onClick={onClickHandler}
         >
             <StyledBadge color="error" variant="dot" max={9}>
-                <ShoppingCartIcon sx={{ padding: "0 auto", color: "white" }} />
+                <ShoppingCartIcon
+                    sx={{
+                        padding: "0 auto",
+                        color: "white",
+                    }}
+                />
             </StyledBadge>
         </IconButton>
     );

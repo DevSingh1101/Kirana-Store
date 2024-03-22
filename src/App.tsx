@@ -10,7 +10,7 @@ function App() {
             <ShopProvider>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="*" element={<OrderPage />} />
+                        <Route path="/" element={<OrderPage />} />
                         <Route path="/confirm" element={<ConfirmOrderPage />} />
                     </Routes>
                 </BrowserRouter>

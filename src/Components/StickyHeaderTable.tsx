@@ -52,7 +52,7 @@ function StickyHeadTable(rows: any[], columns: any[]) {
         <Paper
             sx={{
                 margin: "1rem auto",
-                padding: "1rem 1rem",
+                padding: "1rem 0rem",
                 borderRadius: "1rem",
                 border: "2px solid #979797",
                 width: "90%",
