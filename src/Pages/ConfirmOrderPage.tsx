@@ -15,13 +15,20 @@ const ConfirmOrderPage = () => {
         window.location.href = pathname;
     }
 
+    const toPascalCase = (text: string, trimSpace = false) =>
+        text
+            .split(" ")
+            .map((t) => t[0].toUpperCase() + t.slice(1).toLowerCase())
+            .join(trimSpace ? "" : " ");
+
     function constructProductsRow(state: any): any[] {
         const rows: any[] = [];
         state?.map((category: any) => {
             return category.products?.map((product: any) => {
                 if (product.quantity > 0) {
                     const productItem = {
-                        name: product.name + "-" + category.name,
+                        name: product.name,
+                        category: toPascalCase(category.name),
                         quantity: product.quantity,
                         unit: product.unit,
                     };
@@ -37,6 +44,11 @@ const ConfirmOrderPage = () => {
             id: "name",
             label: "Items",
             minWidth: 150,
+        },
+        {
+            id: "category",
+            label: "Category",
+            minWidth: 100,
         },
         {
             id: "quantity",
