@@ -8,7 +8,8 @@ import { ShopContext } from "../Context/ShopContext";
 const ConfirmOrderPage = () => {
     let pathname =
         "http://wa.me/918114430657?text=Hello!%0AI%20want%20to%20order%20the%20following%20items%20from%20your%20store%0A%0A";
-    const { state } = useContext(ShopContext);
+    // const { state } = useContext(ShopContext);
+    const state = {};
 
     function handleOrderConfirmation() {
         console.log("Whatsapp order done!!");

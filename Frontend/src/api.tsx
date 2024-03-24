@@ -1,5 +1,6 @@
-const timeoutMessage = "";
-export function post<T>(api: string, body?: string): Promise<T> {
+const timeoutMessage: string = "API call is timedout!";
+
+function post<T>(api: string, body?: string): Promise<T> {
     return new Promise((resolve, reject) => {
         fetch(api, {
             credentials: "include",
@@ -35,3 +36,5 @@ export function post<T>(api: string, body?: string): Promise<T> {
             .catch((error: any) => reject(error));
     });
 }
+
+export default {};

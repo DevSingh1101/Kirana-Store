@@ -1,12 +1,27 @@
 import AppBarNav from "../Components/AppBarNav";
-import { IProducts, categories } from "../Constants/Enum";
-import CategoryViewer from "../Components/CategoryViewer";
-import { useContext } from "react";
+import { IProducts, categories, categoryValueMap } from "../Constants/Enum";
+import { useContext, useEffect } from "react";
 import "./OrderPage.css";
 import { ShopContext } from "../Context/ShopContext";
+import { Category } from "@mui/icons-material";
+import CategoryViewer from "../Components/CategoryViewer";
 
 const OrderPage = () => {
-    const { state } = useContext(ShopContext);
+    const { products } = useContext(ShopContext);
+
+    const categoriesMap = new Map<string, IProducts[]>();
+
+    products.forEach((product) => {
+        const category = product.category;
+        var catProducts = categoriesMap.get(category);
+
+        if (catProducts === undefined) {
+            catProducts = [];
+        }
+
+        catProducts.push(product);
+        categoriesMap.set(category, catProducts);
+    });
 
     return (
         <div
@@ -47,16 +62,12 @@ const OrderPage = () => {
                     borderBottomLeftRadius: "1.5rem",
                 }}
             >
-                {state.map(
-                    (
-                        category: { name: string; products: IProducts[] },
-                        index: number
-                    ) => {
+                {Array.from(categoriesMap.entries()).map(
+                    ([category, products]) => {
                         return (
                             <CategoryViewer
-                                categoryName={category.name}
-                                products={category.products}
-                                index={index}
+                                categoryName={category}
+                                products={products}
                             />
                         );
                     }
