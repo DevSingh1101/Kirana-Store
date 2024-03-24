@@ -8,7 +8,7 @@ import {
     Toolbar,
     Typography,
 } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { categoryValueMap } from "../Constants/Enum";
 import logo from "../Assets/19logo.jpg";
@@ -23,16 +23,9 @@ interface AppBarProps {
 const drawerWidth = 240;
 const AppBarNav = ({ categories, cartVisibility }: AppBarProps) => {
     const [expanded, setExpanded] = useState(true);
-    const cartItems = 1;
 
     const handleDrawerToggle = () => {
         setExpanded(!expanded);
-    };
-
-    const navigate = useNavigate();
-
-    const handleOrderConfirmation = () => {
-        navigate("/confirm");
     };
 
     const handleCategoryClick = (event: any) => {
@@ -159,12 +152,7 @@ const AppBarNav = ({ categories, cartVisibility }: AppBarProps) => {
                         ))}
                     </Box>
                     {cartVisibility ? (
-                        <CartIcon
-                            badgeContent={cartItems}
-                            onClickHandler={() => {
-                                handleOrderConfirmation();
-                            }}
-                        />
+                        <CartIcon onClickHandler={() => {}} />
                     ) : null}
                 </Toolbar>
             </AppBar>

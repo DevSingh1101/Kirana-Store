@@ -9,11 +9,10 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 interface CartIconProps {
-    badgeContent: number;
     onClickHandler: () => void;
 }
 
-const CartIcon = ({ badgeContent, onClickHandler }: CartIconProps) => {
+const CartIcon = ({ onClickHandler }: CartIconProps) => {
     return (
         <IconButton
             sx={{

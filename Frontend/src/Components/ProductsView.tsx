@@ -26,7 +26,7 @@ const ProductsView = ({ products, visible }: ProductsViewProps) => {
     const handleUnitChange = (event: any, product: IProducts) => {
         const newUnit = event.target.value;
         changeUnit(product.id, newUnit);
-        // exitProduct(product.id);
+        exitProduct(product.id);
         product.unit = newUnit;
         enterProduct(product);
     };
