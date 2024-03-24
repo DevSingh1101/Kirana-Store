@@ -4,12 +4,13 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import StickyHeadTable from "../Components/StickyHeaderTable";
 import { useContext } from "react";
 import { ShopContext } from "../Context/ShopContext";
+import { CartContext } from "../Context/CartContext";
 
 const ConfirmOrderPage = () => {
     let pathname =
         "http://wa.me/918114430657?text=Hello!%0AI%20want%20to%20order%20the%20following%20items%20from%20your%20store%0A%0A";
-    // const { state } = useContext(ShopContext);
-    const state = {};
+
+    const { cart } = useContext(CartContext);
 
     function handleOrderConfirmation() {
         console.log("Whatsapp order done!!");
@@ -21,24 +22,6 @@ const ConfirmOrderPage = () => {
             .split(" ")
             .map((t) => t[0].toUpperCase() + t.slice(1).toLowerCase())
             .join(trimSpace ? "" : " ");
-
-    function constructProductsRow(state: any): any[] {
-        const rows: any[] = [];
-        state?.map((category: any) => {
-            return category.products?.map((product: any) => {
-                if (product.quantity > 0) {
-                    const productItem = {
-                        name: product.name,
-                        category: toPascalCase(category.name),
-                        quantity: product.quantity,
-                        unit: product.unit,
-                    };
-                    rows.push(productItem);
-                }
-            });
-        });
-        return rows;
-    }
 
     const columns = [
         {
@@ -62,8 +45,6 @@ const ConfirmOrderPage = () => {
             minWidth: 50,
         },
     ];
-
-    const rows = constructProductsRow(state);
 
     return (
         <div
@@ -94,7 +75,7 @@ const ConfirmOrderPage = () => {
                 >
                     <AppBarNav />
                 </div>
-                <div>{StickyHeadTable(rows, columns)}</div>
+                <div>{StickyHeadTable(cart, columns)}</div>
             </div>
 
             <Button
