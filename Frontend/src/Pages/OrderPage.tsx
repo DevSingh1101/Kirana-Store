@@ -5,6 +5,7 @@ import "./OrderPage.css";
 import { ShopContext } from "../Context/ShopContext";
 import { Category } from "@mui/icons-material";
 import CategoryViewer from "../Components/CategoryViewer";
+import { CartContext } from "../Context/CartContext";
 
 const OrderPage = () => {
     const { products } = useContext(ShopContext);

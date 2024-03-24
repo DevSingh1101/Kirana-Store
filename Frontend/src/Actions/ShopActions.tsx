@@ -6,21 +6,18 @@ export enum TypeKeys {
 interface UpdateQuantity {
     type: TypeKeys.UPDATE_QUANTITY;
     payload: {
-        categoryIndex: number;
         productIndex: number;
         newQuantity: number;
     };
 }
 
 const updateQuantity = (
-    categoryIndex: number,
     productIndex: number,
     newQuantity: number
 ): UpdateQuantity => {
     return {
         type: TypeKeys.UPDATE_QUANTITY,
         payload: {
-            categoryIndex: categoryIndex,
             productIndex: productIndex,
             newQuantity: newQuantity,
         },
@@ -30,21 +27,15 @@ const updateQuantity = (
 interface UpdateUnit {
     type: TypeKeys.UPDATE_UNIT;
     payload: {
-        categoryIndex: number;
         productIndex: number;
         newUnit: string;
     };
 }
 
-const updateUnit = (
-    categoryIndex: number,
-    productIndex: number,
-    newUnit: string
-): UpdateUnit => {
+const updateUnit = (productIndex: number, newUnit: string): UpdateUnit => {
     return {
         type: TypeKeys.UPDATE_UNIT,
         payload: {
-            categoryIndex: categoryIndex,
             productIndex: productIndex,
             newUnit: newUnit,
         },

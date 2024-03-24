@@ -1,30 +1,20 @@
 import { createContext, useReducer, useRef, useState } from "react";
 import { initialState } from "../Constants/Enum";
-import OrderPageReducer from "../Reducers/OrderPageReducer";
-import { updateQuantity, updateUnit } from "../Actions/OrderPageActions";
+import ShopReducer from "../Reducers/ShopReducer";
+import { updateQuantity, updateUnit } from "../Actions/ShopActions";
 
 export const ShopContext = createContext(initialState);
 
 export const ShopProvider = (props: any) => {
-    const [state, dispatch] = useReducer(OrderPageReducer, initialState);
+    const [state, dispatch] = useReducer(ShopReducer, initialState);
 
-    const changeQuantity = (
-        categoryIndex: number,
-        productIndex: number,
-        newQuantity: number
-    ) => {
-        dispatch(updateQuantity(categoryIndex, productIndex, newQuantity));
+    const changeQuantity = (productIndex: number, newQuantity: number) => {
+        dispatch(updateQuantity(productIndex, newQuantity));
     };
 
-    const changeUnit = (
-        categoryIndex: number,
-        productIndex: number,
-        newUnit: string
-    ) => {
-        dispatch(updateUnit(categoryIndex, productIndex, newUnit));
+    const changeUnit = (productIndex: number, newUnit: string) => {
+        dispatch(updateUnit(productIndex, newUnit));
     };
-
-    const value = {};
 
     return (
         <ShopContext.Provider
