@@ -6,34 +6,21 @@ import { ShopContext } from "../Context/ShopContext";
 interface ProductsViewProps {
     products: IProducts[];
     visible: boolean;
-    categoryIndex: number;
 }
 
-const ProductsView = ({
-    products,
-    visible,
-    categoryIndex,
-}: ProductsViewProps) => {
+const ProductsView = ({ products, visible }: ProductsViewProps) => {
     const display = visible ? "block" : "none";
 
     const { changeQuantity, changeUnit } = useContext(ShopContext);
 
-    const handleQuantityChange = (
-        event: any,
-        categoryIndex: number,
-        productIndex: number
-    ) => {
+    const handleQuantityChange = (event: any, productIndex: number) => {
         const newQuantity = parseFloat(event.target.value);
-        changeQuantity(categoryIndex, productIndex, newQuantity);
+        changeQuantity(productIndex, newQuantity);
     };
 
-    const handleUnitChange = (
-        event: any,
-        categoryIndex: number,
-        productIndex: number
-    ) => {
+    const handleUnitChange = (event: any, productIndex: number) => {
         const newUnit = event.target.value;
-        changeUnit(categoryIndex, productIndex, newUnit);
+        changeUnit(productIndex, newUnit);
     };
 
     const handleClearZeroQuantity = (event: any) => {
@@ -80,17 +67,13 @@ const ProductsView = ({
                         defaultValue={0}
                         variant="filled"
                         onClick={(e) => handleClearZeroQuantity(e)}
-                        onChange={(e) =>
-                            handleQuantityChange(e, categoryIndex, index)
-                        }
+                        onChange={(e) => handleQuantityChange(e, index)}
                     />
                     <TextField
                         select
                         label="Units"
                         defaultValue={product.unit}
-                        onChange={(e) =>
-                            handleUnitChange(e, categoryIndex, index)
-                        }
+                        onChange={(e) => handleUnitChange(e, index)}
                     >
                         {units.map((unit) => {
                             return (

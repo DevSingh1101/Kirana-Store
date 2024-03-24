@@ -8,14 +8,9 @@ import KeyboardControlKeyIcon from "@mui/icons-material/KeyboardControlKey";
 interface CategoryViewerProps {
     categoryName: string;
     products: IProducts[];
-    index: number;
 }
 
-const CategoryViewer = ({
-    categoryName,
-    products,
-    index,
-}: CategoryViewerProps) => {
+const CategoryViewer = ({ categoryName, products }: CategoryViewerProps) => {
     const [expanded, setExpanded] = useState(true);
 
     const handleExpansion = async () => {
@@ -26,7 +21,6 @@ const CategoryViewer = ({
 
     return (
         <div
-            key={index}
             style={{ color: "#fff", padding: "1rem", width: "100%" }}
             id={categoryName}
         >
@@ -60,11 +54,7 @@ const CategoryViewer = ({
                     )}
                 </IconButton>
             </Typography>
-            <ProductsView
-                products={products}
-                visible={expanded}
-                categoryIndex={index}
-            />
+            <ProductsView products={products} visible={expanded} />
         </div>
     );
 };
