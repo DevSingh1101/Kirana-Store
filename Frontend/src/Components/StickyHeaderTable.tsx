@@ -21,7 +21,7 @@ function StickyHeadTable(rows: any[], columns: any[]) {
     };
 
     const handleChangeRowsPerPage = (
-        event: React.ChangeEvent<HTMLInputElement>
+        event: React.ChangeEvent<HTMLInputElement>,
     ) => {
         setRowsPerPage(+event.target.value);
         setPage(0);
@@ -78,7 +78,7 @@ function StickyHeadTable(rows: any[], columns: any[]) {
                         {rows
                             .slice(
                                 page * rowsPerPage,
-                                page * rowsPerPage + rowsPerPage
+                                page * rowsPerPage + rowsPerPage,
                             )
                             .map((row) => {
                                 return (
