@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IProducts } from "../Constants";
 import OrderTable from "../components/OrderTable";
