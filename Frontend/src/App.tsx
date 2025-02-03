@@ -1,28 +1,32 @@
-import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import OrderPage from "./Pages/OrderPage";
-import ConfirmOrderPage from "./Pages/ConfirmOrderPage";
-import ShopProvider from "./Context/ShopContext";
-import { CartProvider } from "./Context/CartContext";
+import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import OrderPage from "./pages/OrderPage";
+import CartView from "./pages/CartView";
+import Layout from "./Layout";
 
 function App() {
-    return (
-        <div className="App">
-            <ShopProvider>
-                <CartProvider>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path="/" element={<OrderPage />} />
-                            <Route
-                                path="/confirm"
-                                element={<ConfirmOrderPage />}
-                            />
-                        </Routes>
-                    </BrowserRouter>
-                </CartProvider>
-            </ShopProvider>
-        </div>
-    );
+    const routes = createBrowserRouter([
+        {
+            path: "/",
+            element: <Layout />,
+            children: [
+                {
+                    path: "",
+                    element: <OrderPage />,
+                },
+                {
+                    path: "cart",
+                    element: <CartView />,
+                },
+            ],
+        },
+    ]);
+
+    useEffect(() => {
+        document.querySelector("html")?.setAttribute("data-theme", "light");
+    }, []);
+
+    return <RouterProvider router={routes} />;
 }
 
 export default App;
