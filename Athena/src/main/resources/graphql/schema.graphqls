@@ -1,0 +1,36 @@
+# Query to fetch all products
+type Query {
+    getAllProducts: [Product]
+    getAllCategories: [Category]
+}
+
+# Mutations to create new products and categories
+type Mutation {
+    createProduct(input: ProductInput!): Product
+    createCategory(name: String!): Category
+}
+
+# Product Type Definition
+type Product {
+    id: ID
+    categoryId: String
+    name: String
+    price: Float
+    quantity: Float
+    unit: String
+}
+
+# Category Type Definition
+type Category {
+    id: ID
+    name: String
+}
+
+# Input Type for Product Creation
+input ProductInput {
+    categoryId: String!
+    name: String!
+    price: Float!
+    quantity: Float!
+    unit: String!
+}
