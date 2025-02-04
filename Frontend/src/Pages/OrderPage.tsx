@@ -63,17 +63,17 @@ const OrderPage = () => {
 
     return (
         <div className="grid grid-cols-1 rounded-xl gap-4">
-            <div className="h-[800px] overflow-y-auto">
+            <div className="h-[80vh] overflow-y-auto">
                 {Array.from(categoriesMap.entries()).map(([key, value]) => (
                     <div className="grid grid-cols-1 gap-2" key={key}>
                         <h1
                             id={key.toUpperCase()}
-                            className="h-16 bg-blue-500 text-white text-2xl font-bold flex justify-center items-center"
+                            className="h-16 text-2xl font-bold flex justify-center items-center"
                         >
                             {key}
                         </h1>
-                        <div className="grid grid-cols-1 gap-6 w-4/5 p-8 mx-auto">
-                            <div className="grid grid-cols-2 text-lg text-gray-400 font-semibold">
+                        <div className="grid grid-cols-1 gap-6 w-full sm:w-4/5 p-8 mx-auto">
+                            <div className="grid grid-cols-2 text-md text-gray-400 font-semibold">
                                 <h1>{"Name"}</h1>
                                 <div className="grid grid-cols-2">
                                     <h1>{"Quantity"}</h1>

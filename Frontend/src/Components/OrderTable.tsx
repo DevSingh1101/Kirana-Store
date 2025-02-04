@@ -44,11 +44,6 @@ const OrderTable = ({ products }: { products: IProducts[] }) => {
         };
     }, []);
 
-    const rowSelection: RowSelectionOptions = {
-        mode: "multiRow",
-        headerCheckbox: false,
-    };
-
     const myTheme = themeAlpine.withParams({
         spacing: 12,
         accentColor: "blue",
@@ -59,13 +54,12 @@ const OrderTable = ({ products }: { products: IProducts[] }) => {
     }, []);
 
     return (
-        <div className="h-[500px] w-full">
+        <div className="h-[60vh] w-full">
             <AgGridReact
                 theme={myTheme}
                 rowData={products}
                 columnDefs={columnDefs}
                 defaultColDef={defaultColDef}
-                rowSelection={rowSelection}
                 pagination={true}
                 paginationPageSize={5}
                 paginationPageSizeSelector={[5, 10, 20, 50, 100]}
