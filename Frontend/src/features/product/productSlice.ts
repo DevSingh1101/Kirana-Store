@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IProducts } from "../../Constants";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { IProducts, productsArr } from "../../Constants";
 
 export const productSlice = createSlice({
     name: "product",
@@ -43,6 +43,18 @@ export const productSlice = createSlice({
             state.value.address = address;
         },
     },
+    extraReducers: (builder) => {
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
+            state.value.isLoading = true;
+            state.value.products = action.payload;
+            state.value.isLoading = false;
+        });
+    },
+});
+
+export const fetchProducts = createAsyncThunk("/user", async () => {
+    const data = productsArr;
+    return data;
 });
 
 export const {

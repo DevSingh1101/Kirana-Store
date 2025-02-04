@@ -24,29 +24,24 @@ const OrderTable = ({ products }: { products: IProducts[] }) => {
         },
         {
             field: "quantity",
-            // editable: true,
             sortable: true,
         },
         {
             field: "unit",
-            // editable: true,
-            // cellEditorParams: {
-            //     values: ["Kg", "Gm", "Pc"],
-            // },
         },
     ];
 
     const defaultColDef = useMemo(() => {
         return {
-            filter: "agTextColumnFilter",
-            floatingFilter: true,
             flex: 1,
         };
     }, []);
 
     const myTheme = themeAlpine.withParams({
         spacing: 12,
-        accentColor: "blue",
+        accentColor: "orange",
+        backgroundColor: "inherit",
+        fontFamily: "inherit",
     });
 
     const onCellValueChanged = useCallback((event: CellValueChangedEvent) => {

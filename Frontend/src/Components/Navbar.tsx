@@ -44,7 +44,7 @@ const Navbar = ({
     const pathname = useLocation().pathname;
 
     return (
-        <div className="h-20 bg-gray-700 sticky top-0">
+        <div className="h-20 bg-neutral-800 sticky top-0">
             <LayoutGroup id={layoutGroupId}>
                 <div className={classNames("top-0 z-30 transition-all")}>
                     <div
@@ -102,8 +102,7 @@ const Navbar = ({
                                         buttonVariants({
                                             variant: "secondary",
                                         }),
-                                        "rounded-full border-gray-600 p-3",
-                                        "dark:bg-gray-700 dark:text-white dark:hover:bg-neutral-900",
+                                        "rounded-full p-3 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700",
                                     )}
                                     type="button"
                                 >
@@ -119,8 +118,7 @@ const Navbar = ({
                                             buttonVariants({
                                                 variant: "secondary",
                                             }),
-                                            "rounded-full border-gray-600 p-3",
-                                            "dark:bg-gray-700 dark:text-white dark:hover:bg-neutral-900",
+                                            "rounded-full p-3 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700",
                                         )}
                                         type="button"
                                     >

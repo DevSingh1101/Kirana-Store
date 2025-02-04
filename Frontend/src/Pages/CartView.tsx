@@ -88,7 +88,7 @@ const CartView = () => {
                             variant: "secondary",
                         }),
                         "rounded-full w-fit py-2 px-10",
-                        "dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 group",
+                        "bg-neutral-700 dark:text-white hover:bg-neutral-800 group",
                     )}
                     type="button"
                     onClick={handleBtnClick}

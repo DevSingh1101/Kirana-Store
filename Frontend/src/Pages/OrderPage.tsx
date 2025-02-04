@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { IProducts, productsArr, units } from "../Constants";
 import { useDispatch, useSelector } from "react-redux";
 import {
+    fetchProducts,
     setProducts,
     updateQuantity,
     updateUnit,
@@ -34,6 +35,7 @@ const OrderPage = () => {
                 products: dummyProducts,
             }),
         );
+        dispatch(fetchProducts())
     }, []);
 
     function handleInputChange(id: number, quant: string) {
@@ -143,7 +145,7 @@ const OrderPage = () => {
                             variant: "secondary",
                         }),
                         "rounded-full w-fit py-2 px-10",
-                        "dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 group",
+                        "bg-neutral-700 dark:text-white hover:bg-neutral-800",
                     )}
                     type="button"
                     onClick={handleBtnClick}
