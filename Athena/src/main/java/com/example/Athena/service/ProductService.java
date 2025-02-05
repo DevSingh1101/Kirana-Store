@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.Athena.DTO.ProductDTO;
+import com.example.Athena.model.Category;
 import com.example.Athena.model.Product;
+import com.example.Athena.repository.CategoryRepository;
 import com.example.Athena.repository.ProductRepository;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
@@ -28,8 +33,15 @@ public class ProductService {
     }
 
     public Product createProduct(ProductDTO productDto) {
+        final String categoryId = productDto.getCategoryId();
+        Optional<Category> category = categoryRepository.findById(categoryId);
+
+        if (!category.isPresent()) {
+            return null;
+        }
+
         Product product = new Product();
-        product.setCategoryId(productDto.getCategoryId());
+        product.setCategory(category.get());
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setQuantity(productDto.getQuantity());
