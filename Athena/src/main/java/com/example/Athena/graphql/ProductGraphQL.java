@@ -23,9 +23,15 @@ public class ProductGraphQL {
     }
 
     @QueryMapping
-    public List<Product> getProductByCategory(@Argument("categoryId") String categoryId) {
-        return productService.getProductsByCategory(categoryId);
+    public List<Product> getProductByCategoryId(@Argument("categoryId") String categoryId) {
+        return productService.getProductsByCategoryId(categoryId);
     }
+
+    // @QueryMapping
+    // public List<Product> getProductByCategoryName(@Argument("categoryName")
+    // String name) {
+    // return productService.getProductsByCategoryName(name);
+    // }
 
     @MutationMapping
     public Product createProduct(@Argument("input") ProductDTO input) {

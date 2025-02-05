@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.example.Athena.DTO.ProductDTO;
@@ -28,9 +29,13 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public List<Product> getProductsByCategory(String categoryId) {
+    public List<Product> getProductsByCategoryId(String categoryId) {
         return productRepository.findByCategoryId(categoryId);
     }
+
+    // public List<Product> getProductsByCategoryName(String name) {
+    // return productRepository.findByCategory(Example.of(new Category(null, name)))
+    // }
 
     public Product createProduct(ProductDTO productDto) {
         final String categoryId = productDto.getCategoryId();

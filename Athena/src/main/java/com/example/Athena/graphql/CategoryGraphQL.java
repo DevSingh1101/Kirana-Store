@@ -1,6 +1,7 @@
 package com.example.Athena.graphql;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -19,6 +20,11 @@ public class CategoryGraphQL {
     @QueryMapping
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
+    }
+
+    @QueryMapping
+    public Optional<Category> getCategoryByName(@Argument("name") String name) {
+        return categoryService.getCategoryByName(name);
     }
 
     @MutationMapping

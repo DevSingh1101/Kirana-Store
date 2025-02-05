@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.example.Athena.repository.CategoryRepository;
@@ -20,6 +21,11 @@ public class CategoryService {
 
     public Optional<Category> getCategoryById(String id) {
         return categoryRepository.findById(id);
+    }
+
+    public Optional<Category> getCategoryByName(String name) {
+        Example<Category> example = Example.of(new Category(null, name));
+        return categoryRepository.findOne(example);
     }
 
     public Category createCategory(Category category) {

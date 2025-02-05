@@ -1,7 +1,12 @@
 # Query to fetch all products
 type Query {
+    # Product
     getAllProducts: [Product]
+    getProductByCategoryId(categoryId: String): [Product]
+
+    # Category
     getAllCategories: [Category]
+    getCategoryByName(name: String): Category
 }
 
 # Mutations to create new products and categories
