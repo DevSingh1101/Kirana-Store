@@ -62,7 +62,7 @@ const Navbar = ({
                         <div className="flex h-20 items-center justify-between gap-2">
                             <a href="/" className="grow basis-0 cursor-pointer">
                                 <img
-                                    className="w-28 h-28"
+                                    className="w-24 h-20"
                                     src={logo}
                                     alt="logo"
                                 />
