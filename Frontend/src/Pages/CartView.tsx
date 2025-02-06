@@ -85,7 +85,7 @@ const CartView = () => {
                     data-ripple-light="true"
                     className={classNames(
                         buttonVariants({
-                            variant: "secondary",
+                            variant: "primary",
                         }),
                         "rounded-full w-fit py-2 px-10",
                         "bg-neutral-700 dark:text-white hover:bg-neutral-800 group",
