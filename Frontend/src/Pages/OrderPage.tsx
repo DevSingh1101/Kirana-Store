@@ -13,13 +13,16 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { ApiOrderPageResp, IProduct } from "../types";
 import { loadOrderPageResp } from "../graphql/resolvers";
+import { IRootState } from "../redux/store";
 
 const OrderPage = () => {
     const { data, isLoading, error } = useQuery<ApiOrderPageResp>(
         "Orders",
         loadOrderPageResp,
     );
-    const products = useSelector((state: any) => state.product.value.products);
+    const products = useSelector(
+        (state: IRootState) => state.product.value.products,
+    );
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

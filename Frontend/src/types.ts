@@ -11,6 +11,13 @@ export interface ApiOrderPageResp {
     }[];
 }
 
+export interface IProductState {
+    isLoading: boolean;
+    products: IProduct[];
+    name: string;
+    address: string;
+}
+
 export interface IOrderPageProps {
     products: IProduct[];
     isLoading: boolean;
