@@ -30,6 +30,7 @@ dependencies {
 	implementation 'io.sentry:sentry-spring-boot-starter-jakarta'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.projectlombok:lombok'
+	// implementation "org.springframework.boot:spring-boot-starter-security"
     annotationProcessor 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	// developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
