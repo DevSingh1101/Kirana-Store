@@ -1,20 +1,16 @@
 import { useCallback, useMemo } from "react";
-import type {
-    CellValueChangedEvent,
-    ColDef,
-    RowSelectionOptions,
-} from "ag-grid-community";
+import type { CellValueChangedEvent, ColDef } from "ag-grid-community";
 import {
     AllCommunityModule,
     ModuleRegistry,
     themeAlpine,
 } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
-import { IProducts } from "../Constants";
+import { IProduct } from "../types";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const OrderTable = ({ products }: { products: IProducts[] }) => {
+const OrderTable = ({ products }: { products: IProduct[] }) => {
     const columnDefs: ColDef[] = [
         {
             field: "category",
@@ -42,6 +38,16 @@ const OrderTable = ({ products }: { products: IProducts[] }) => {
         accentColor: "orange",
         backgroundColor: "inherit",
         fontFamily: "inherit",
+        textColor: "white",
+        headerRowBorder: {
+            color: "gray",
+        },
+        headerColumnBorder: {
+            color: "gray",
+        },
+        rowBorder: {
+            color: "gray",
+        },
     });
 
     const onCellValueChanged = useCallback((event: CellValueChangedEvent) => {

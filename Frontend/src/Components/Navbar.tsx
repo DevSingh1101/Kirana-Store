@@ -1,14 +1,19 @@
 /* eslint-disable react-refresh/only-export-components */
 import classNames from "classnames";
 import { LayoutGroup } from "framer-motion";
-import { ReactNode, useId } from "react";
+import { ReactNode, useEffect, useId } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { categories } from "../Constants";
 import { cva } from "class-variance-authority";
+import { useQuery } from "react-query";
+import { ApiNavbarResp } from "../types";
+import { loadNavbarResp } from "../graphql/resolvers";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategories } from "../features/category/categorySlice";
+import { IRootState } from "../redux/store";
 
 const MaxWidthWrapper = ({
     className,
@@ -42,6 +47,28 @@ const Navbar = ({
 }) => {
     const layoutGroupId = useId();
     const pathname = useLocation().pathname;
+
+    const dispatch = useDispatch();
+
+    const categories = useSelector(
+        (state: IRootState) => state.category.value.categories,
+    );
+
+    const { data, isLoading, error } = useQuery<ApiNavbarResp>(
+        "Categories",
+        loadNavbarResp,
+    );
+
+    useEffect(() => {
+        if (data?.getAllCategories) {
+            const categories = data.getAllCategories;
+            dispatch(
+                setCategories({
+                    categories: categories,
+                }),
+            );
+        }
+    }, [data, dispatch]);
 
     return (
         <div className="h-20 bg-neutral-800 sticky top-0">
@@ -77,16 +104,16 @@ const Navbar = ({
                                         {categories.map((category) => {
                                             return (
                                                 <NavigationMenu.Item
-                                                    key={category}
+                                                    key={category.id}
                                                 >
                                                     <a
-                                                        href={`#${category.toUpperCase()}`}
-                                                        id={`nav-${category}`}
+                                                        href={`#${category.name.toUpperCase()}`}
+                                                        id={`nav-${category.name}`}
                                                         className={
                                                             navItemClassName
                                                         }
                                                     >
-                                                        {category}
+                                                        {category.name}
                                                     </a>
                                                 </NavigationMenu.Item>
                                             );
@@ -95,23 +122,23 @@ const Navbar = ({
                                 </NavigationMenu.Root>
                             )}
 
-                            <div className="hidden grow basis-0 justify-end items-center gap-2 lg:flex">
-                                <button
-                                    data-ripple-light="true"
-                                    className={classNames(
-                                        buttonVariants({
-                                            variant: "secondary",
-                                        }),
-                                        "rounded-full p-3 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700",
-                                    )}
-                                    type="button"
-                                >
-                                    <Link to={"/admin"}>
-                                        <AdminPanelSettingsOutlinedIcon />
-                                    </Link>
-                                </button>
+                            {pathname === "/" && (
+                                <div className="hidden grow basis-0 justify-end items-center gap-2 lg:flex">
+                                    <button
+                                        data-ripple-light="true"
+                                        className={classNames(
+                                            buttonVariants({
+                                                variant: "secondary",
+                                            }),
+                                            "rounded-full p-3 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700",
+                                        )}
+                                        type="button"
+                                    >
+                                        <Link to={"/admin"}>
+                                            <AdminPanelSettingsOutlinedIcon />
+                                        </Link>
+                                    </button>
 
-                                {pathname === "/" && (
                                     <button
                                         data-ripple-light="true"
                                         className={classNames(
@@ -128,8 +155,8 @@ const Navbar = ({
                                             />
                                         </Link>
                                     </button>
-                                )}
-                            </div>
+                                </div>
+                            )}
                         </div>
                     </MaxWidthWrapper>
                 </div>

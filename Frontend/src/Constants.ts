@@ -1,3 +1,5 @@
+import { Units } from "./types";
+
 export const categories = [
     "19no Speciality",
     "Atta",
@@ -20,24 +22,18 @@ export interface IProducts {
     quantity: number;
 }
 
-export enum Units {
-    KG = "kg",
-    GM = "gm",
-    PC = "pc",
-}
-
 export const units = [
     {
-        label: "Kilo",
-        value: "KG",
+        label: "Kg",
+        value: Units.KG,
     },
     {
-        label: "Gram",
-        value: "GM",
+        label: "Gm",
+        value: Units.GM,
     },
     {
         label: "Piece",
-        value: "Pc",
+        value: Units.PC,
     },
 ];
 

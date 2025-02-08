@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OrderPage from "./pages/OrderPage";
 import CartView from "./pages/CartView";
 import Layout from "./Layout";
+import AdminView from "./pages/AdminView";
 
 function App() {
     const routes = createBrowserRouter([
@@ -20,11 +20,17 @@ function App() {
                 },
             ],
         },
+        {
+            path: "/admin",
+            element: <Layout />,
+            children: [
+                {
+                    path: "",
+                    element: <AdminView />,
+                },
+            ],
+        },
     ]);
-
-    useEffect(() => {
-        document.querySelector("html")?.setAttribute("data-theme", "light");
-    }, []);
 
     return <RouterProvider router={routes} />;
 }

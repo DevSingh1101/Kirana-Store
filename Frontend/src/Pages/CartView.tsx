@@ -1,25 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from "react-redux";
-import { IProducts } from "../Constants";
 import OrderTable from "../components/OrderTable";
-import { updateAddress, updateName } from "../features/product/productSlice";
+import { updateAddress, updateName } from "../features/customer/customerSlice";
 import classNames from "classnames";
 import { buttonVariants } from "../components/Navbar";
 import { WhatsApp } from "@mui/icons-material";
+import { IRootState } from "../redux/store";
+import { IProduct } from "../types";
 
 const CartView = () => {
     const dispatch = useDispatch();
 
-    const cartProducts: IProducts[] = useSelector(
-        (state: any) => state.product.value.products,
-    ).filter((product: IProducts) => {
+    const cartProducts: IProduct[] = useSelector(
+        (state: IRootState) => state.product.value.products,
+    ).filter((product: IProduct) => {
         return product.quantity > 0;
     });
 
-    const { name, address } = useSelector((state: any) => {
+    const { name, address } = useSelector((state: IRootState) => {
         return {
-            name: state.product.value.name,
-            address: state.product.value.address,
+            name: state.customer.value.name,
+            address: state.customer.value.address,
         };
     });
 
