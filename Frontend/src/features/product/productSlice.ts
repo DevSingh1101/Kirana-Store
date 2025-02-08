@@ -7,8 +7,6 @@ export const productSlice = createSlice({
         value: {
             isLoading: false,
             products: [] as unknown as IProduct[],
-            name: "",
-            address: "",
         } as IProductState,
     },
     reducers: {
@@ -34,24 +32,10 @@ export const productSlice = createSlice({
                 return product.id === id ? { ...product, unit: unit } : product;
             });
         },
-        updateName: (state, action) => {
-            const name = action.payload.name;
-            state.value.name = name;
-        },
-        updateAddress: (state, action) => {
-            const address = action.payload.address;
-            state.value.address = address;
-        },
     },
 });
 
-export const {
-    setLoading,
-    setProducts,
-    updateQuantity,
-    updateUnit,
-    updateName,
-    updateAddress,
-} = productSlice.actions;
+export const { setLoading, setProducts, updateQuantity, updateUnit } =
+    productSlice.actions;
 
 export default productSlice.reducer;
