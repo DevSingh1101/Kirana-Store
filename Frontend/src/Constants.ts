@@ -1936,4 +1936,5 @@ export const productsArr: IProducts[] = [
     },
 ];
 
-export const API_ENDPOINT = "http://localhost:8080/graphql";
+export const API_ENDPOINT =
+    "https://kirana-store-production.up.railway.app/graphql";

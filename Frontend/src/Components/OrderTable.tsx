@@ -10,23 +10,13 @@ import { IProduct } from "../types";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const OrderTable = ({ products }: { products: IProduct[] }) => {
-    const columnDefs: ColDef[] = [
-        {
-            field: "category",
-        },
-        {
-            field: "name",
-        },
-        {
-            field: "quantity",
-            sortable: true,
-        },
-        {
-            field: "unit",
-        },
-    ];
-
+const OrderTable = ({
+    products,
+    columns,
+}: {
+    products: IProduct[];
+    columns: ColDef[];
+}) => {
     const defaultColDef = useMemo(() => {
         return {
             flex: 1,
@@ -59,7 +49,7 @@ const OrderTable = ({ products }: { products: IProduct[] }) => {
             <AgGridReact
                 theme={myTheme}
                 rowData={products}
-                columnDefs={columnDefs}
+                columnDefs={columns}
                 defaultColDef={defaultColDef}
                 pagination={true}
                 paginationPageSize={5}

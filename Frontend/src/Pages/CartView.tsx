@@ -7,6 +7,7 @@ import { buttonVariants } from "../components/Navbar";
 import { WhatsApp } from "@mui/icons-material";
 import { IRootState } from "../redux/store";
 import { IProduct } from "../types";
+import { ColDef } from "ag-grid-community";
 
 const CartView = () => {
     const dispatch = useDispatch();
@@ -40,6 +41,22 @@ const CartView = () => {
         );
     }
 
+    const columnDefs: ColDef[] = [
+        {
+            field: "category",
+        },
+        {
+            field: "name",
+        },
+        {
+            field: "quantity",
+            sortable: true,
+        },
+        {
+            field: "unit",
+        },
+    ];
+
     function handleBtnClick() {
         const ordersUrl = cartProducts
             ?.map((product) => {
@@ -63,7 +80,7 @@ const CartView = () => {
 
     return (
         <div className="flex flex-col items-center p-4">
-            <OrderTable products={cartProducts} />
+            <OrderTable products={cartProducts} columns={columnDefs} />
 
             <div className="flex items-center justify-center gap-4 p-2 shadow-lg w-full">
                 <input
