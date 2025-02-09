@@ -4,7 +4,11 @@ import { IRootState } from "../redux/store";
 import { units } from "../Constants";
 import { useCreateProduct } from "../graphql/resolvers";
 
-const ProductForm = ({ closeModalFn }: { closeModalFn: () => void }) => {
+const ProductForm = ({
+    closeProductForm,
+}: {
+    closeProductForm: () => void;
+}) => {
     const categories = useSelector(
         (state: IRootState) => state.category.value.categories,
     );
@@ -41,12 +45,12 @@ const ProductForm = ({ closeModalFn }: { closeModalFn: () => void }) => {
             quantity: formData.quantity,
             unit: formData.unit,
         });
-        closeModalFn();
+        closeProductForm();
     };
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") closeModalFn();
+            if (event.key === "Escape") closeProductForm();
         };
 
         document.addEventListener("keydown", handleKeyDown);
@@ -54,7 +58,7 @@ const ProductForm = ({ closeModalFn }: { closeModalFn: () => void }) => {
     }, []);
 
     return (
-        <section className="w-full bg-white dark:bg-gray-800 rounded-2xl px-4 lg:w-1/2">
+        <section className="w-full bg-white dark:bg-black rounded-2xl px-4 lg:w-1/2">
             <div className="py-8 px-4 mx-auto lg:py-16">
                 <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                     Add a new product
@@ -200,7 +204,7 @@ const ProductForm = ({ closeModalFn }: { closeModalFn: () => void }) => {
                         <button
                             type="button"
                             className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-red-600 rounded-lg focus:ring-4 focus:ring-red-400 dark:focus:ring-neutral-400 hover:bg-red-700"
-                            onClick={closeModalFn}
+                            onClick={closeProductForm}
                         >
                             Close
                         </button>

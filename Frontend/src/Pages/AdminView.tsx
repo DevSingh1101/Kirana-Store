@@ -9,9 +9,12 @@ import ProductForm from "../components/ProductForm";
 import Loader from "../components/Loader";
 import OrderTable from "../components/OrderTable";
 import { ColDef } from "ag-grid-community";
+import { Category } from "@mui/icons-material";
+import CategoryForm from "../components/CategoryForm";
 
 const AdminView = () => {
-    const [modalOpen, setModalOpen] = useState(false);
+    const [productFormToggle, setProductFormToggle] = useState(false);
+    const [categoryFormToggle, setCategoryFormToggle] = useState(false);
 
     const { data, isLoading, isError, refetch } = useQuery<ApiOrderPageResp>(
         "Orders",
@@ -38,9 +41,13 @@ const AdminView = () => {
         }
     }, [data, dispatch]);
 
-    const handleModalSwitch = () => {
-        setModalOpen(!modalOpen);
+    const handleProductFormSwitch = () => {
+        setProductFormToggle(!productFormToggle);
         refetch();
+    };
+
+    const handleCategoryFormSwitch = () => {
+        setCategoryFormToggle(!categoryFormToggle);
     };
 
     const columnDefs: ColDef[] = [
@@ -125,35 +132,71 @@ const AdminView = () => {
                                     </div>
                                 </form>
                             </div>
-                            <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-                                <button
-                                    type="button"
-                                    id="createProductModalButton"
-                                    data-modal-target="createProductModal"
-                                    data-modal-toggle="createProductModal"
-                                    className="flex items-center justify-center text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-                                    onClick={handleModalSwitch}
-                                >
-                                    <svg
-                                        className="h-3.5 w-3.5 mr-2"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        aria-hidden="true"
+                            <div className="flex gap-4 items-center">
+                                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        id="createProductModalButton"
+                                        data-modal-target="createProductModal"
+                                        data-modal-toggle="createProductModal"
+                                        className="flex items-center justify-center text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                                        onClick={handleCategoryFormSwitch}
                                     >
-                                        <path
-                                            clipRule="evenodd"
-                                            fillRule="evenodd"
-                                            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                                        />
-                                    </svg>
-                                    Add
-                                </button>
+                                        <svg
+                                            className="h-3.5 w-3.5 mr-2"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                clipRule="evenodd"
+                                                fillRule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                            />
+                                        </svg>
+                                        Add Category
+                                    </button>
+                                </div>
+                                <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        id="createProductModalButton"
+                                        data-modal-target="createProductModal"
+                                        data-modal-toggle="createProductModal"
+                                        className="flex items-center justify-center text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+                                        onClick={handleProductFormSwitch}
+                                    >
+                                        <svg
+                                            className="h-3.5 w-3.5 mr-2"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                clipRule="evenodd"
+                                                fillRule="evenodd"
+                                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                            />
+                                        </svg>
+                                        Add Product
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        {modalOpen && (
-                            <div className="fixed inset-0 flex items-center justify-center backdrop-filter backdrop-blur-lg">
-                                <ProductForm closeModalFn={handleModalSwitch} />
+                        {productFormToggle && (
+                            <div className="fixed inset-0 flex items-center justify-center backdrop-filter backdrop-blur-lg z-10">
+                                <ProductForm
+                                    closeProductForm={handleProductFormSwitch}
+                                />
+                            </div>
+                        )}
+                        {categoryFormToggle && (
+                            <div className="fixed inset-0 flex items-center justify-center backdrop-filter backdrop-blur-lg z-10">
+                                <CategoryForm
+                                    closeCategoryForm={handleCategoryFormSwitch}
+                                />
                             </div>
                         )}
                         <OrderTable products={products} columns={columnDefs} />
