@@ -15,6 +15,8 @@ import { ApiOrderPageResp, IProduct } from "../types";
 import { loadOrderPageResp } from "../graphql/resolvers";
 import { IRootState } from "../redux/store";
 import Loader from "../components/Loader";
+import { setLoading } from "../features/mainSlice";
+import MainLoader from "../components/MainLoader";
 
 const OrderPage = () => {
     const { data, isLoading, isError } = useQuery<ApiOrderPageResp>(
@@ -42,6 +44,10 @@ const OrderPage = () => {
         }
     }, [data, dispatch]);
 
+    useEffect(() => {
+        setLoading({ loading: true });
+    }, [isLoading]);
+
     const categoriesMap = useMemo(() => {
         const map = new Map<string, IProduct[]>();
         products?.forEach((product: IProduct) => {
@@ -68,40 +74,38 @@ const OrderPage = () => {
         );
     }
 
-    if (isLoading) {
-        return (
-            <div className="h-[90vh] w-[100vw] flex flex-col items-center justify-center">
-                <Loader />
-            </div>
-        );
-    }
-
     return (
-        <div className="grid grid-cols-1 rounded-xl gap-4">
-            <div className="h-[80vh] overflow-y-auto">
-                {Array.from(categoriesMap.entries()).map(
-                    ([category, products]) => (
-                        <CategorySection
-                            key={category}
-                            category={category}
-                            products={products}
-                        />
-                    ),
-                )}
-            </div>
-            <div className="flex items-center justify-center">
-                <button
-                    data-ripple-light="true"
-                    className={classNames(
-                        buttonVariants({ variant: "primary" }),
-                        "rounded-full w-fit py-2 px-10 bg-neutral-700 dark:text-white hover:bg-neutral-800",
-                    )}
-                    type="button"
-                    onClick={() => navigate("/cart")}
-                >
-                    Confirm
-                </button>
-            </div>
+        <div className="h-[90vh] grid grid-cols-1 align-middle rounded-xl gap-4">
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <>
+                    <div className="h-[80vh] overflow-y-auto">
+                        {Array.from(categoriesMap.entries()).map(
+                            ([category, products]) => (
+                                <CategorySection
+                                    key={category}
+                                    category={category}
+                                    products={products}
+                                />
+                            ),
+                        )}
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <button
+                            data-ripple-light="true"
+                            className={classNames(
+                                buttonVariants({ variant: "primary" }),
+                                "rounded-full w-fit py-2 px-10 bg-neutral-700 dark:text-white hover:bg-neutral-800",
+                            )}
+                            type="button"
+                            onClick={() => navigate("/cart")}
+                        >
+                            Confirm
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };

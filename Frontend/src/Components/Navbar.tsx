@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import classNames from "classnames";
 import { LayoutGroup } from "framer-motion";
 import { ReactNode, useEffect, useId } from "react";
@@ -14,6 +13,7 @@ import { loadNavbarResp } from "../graphql/resolvers";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategories } from "../features/category/categorySlice";
 import { IRootState } from "../redux/store";
+import { setLoading } from "../features/mainSlice";
 
 const MaxWidthWrapper = ({
     className,
@@ -54,7 +54,7 @@ const Navbar = ({
         (state: IRootState) => state.category.value.categories,
     );
 
-    const { data, isLoading, error } = useQuery<ApiNavbarResp>(
+    const { data, isLoading, isError } = useQuery<ApiNavbarResp>(
         "Categories",
         loadNavbarResp,
     );
