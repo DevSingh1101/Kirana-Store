@@ -1,16 +1,17 @@
+import Logo from "./Logo";
+import NavItems from "./NavItems";
 import classNames from "classnames";
-import { LayoutGroup } from "framer-motion";
-import { ReactNode, useEffect, useId } from "react";
-import { useLocation } from "react-router-dom";
+import NavButtons from "./NavButtons";
 import { useQuery } from "react-query";
 import { ApiNavbarResp } from "../../types";
+import { LayoutGroup } from "framer-motion";
+import { IRootState } from "../../redux/store";
+import { useLocation } from "react-router-dom";
+import { ReactNode, useEffect, useId } from "react";
 import { loadNavbarResp } from "../../graphql/resolvers";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategories } from "../../features/category/categorySlice";
-import { IRootState } from "../../redux/store";
-import Logo from "./Logo";
-import NavItems from "./NavItems";
-import NavButtons from "./NavButtons";
+import Toast, { toastVariants } from "../Toast";
 
 const MaxWidthWrapper = ({
     className,
@@ -44,7 +45,7 @@ const Navbar = ({
         (state: IRootState) => state.category.value.categories,
     );
 
-    const { data, isFetching, isError, isSuccess } = useQuery<ApiNavbarResp>(
+    const { data, isError, error, isSuccess } = useQuery<ApiNavbarResp>(
         "Categories",
         loadNavbarResp,
     );
@@ -79,11 +80,21 @@ const Navbar = ({
                         <div className="flex h-20 items-center justify-between gap-2">
                             <Logo />
 
-                            {pathname === "/" && (
-                                <NavItems categories={categories} />
+                            {isError && (
+                                <Toast
+                                    type={toastVariants({variant: "error"})}
+                                    message={`Error fetching categories due to ${(error as Error).name}`}
+                                />
                             )}
+                            {isSuccess && (
+                                <>
+                                    {pathname === "/" && (
+                                        <NavItems categories={categories} />
+                                    )}
 
-                            {pathname === "/" && <NavButtons />}
+                                    {pathname === "/" && <NavButtons />}
+                                </>
+                            )}
                         </div>
                     </MaxWidthWrapper>
                 </div>
