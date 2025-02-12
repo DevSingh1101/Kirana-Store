@@ -8,7 +8,6 @@ import {
     updateUnit,
 } from "../features/product/productSlice";
 import classNames from "classnames";
-import { buttonVariants } from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { ApiOrderPageResp, IProduct } from "../types";
@@ -16,7 +15,7 @@ import { loadOrderPageResp } from "../graphql/resolvers";
 import { IRootState } from "../redux/store";
 import Loader from "../components/Loader";
 import { setLoading } from "../features/mainSlice";
-import MainLoader from "../components/MainLoader";
+import { buttonVariants } from "../components/Button";
 
 const OrderPage = () => {
     const { data, isLoading, isError } = useQuery<ApiOrderPageResp>(

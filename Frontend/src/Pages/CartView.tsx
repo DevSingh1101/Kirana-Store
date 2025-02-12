@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import OrderTable from "../components/OrderTable";
 import { updateAddress, updateName } from "../features/customer/customerSlice";
 import classNames from "classnames";
-import { buttonVariants } from "../components/Navbar";
 import { WhatsApp } from "@mui/icons-material";
 import { IRootState } from "../redux/store";
 import { IProduct } from "../types";
 import { ColDef } from "ag-grid-community";
+import { buttonVariants } from "../components/Button";
 
 const CartView = () => {
     const dispatch = useDispatch();
