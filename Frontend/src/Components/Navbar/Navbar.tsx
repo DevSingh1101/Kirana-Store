@@ -1,0 +1,95 @@
+import classNames from "classnames";
+import { LayoutGroup } from "framer-motion";
+import { ReactNode, useEffect, useId } from "react";
+import { useLocation } from "react-router-dom";
+import { useQuery } from "react-query";
+import { ApiNavbarResp } from "../../types";
+import { loadNavbarResp } from "../../graphql/resolvers";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategories } from "../../features/category/categorySlice";
+import { IRootState } from "../../redux/store";
+import Logo from "./Logo";
+import NavItems from "./NavItems";
+import NavButtons from "./NavButtons";
+
+const MaxWidthWrapper = ({
+    className,
+    children,
+}: {
+    className?: string;
+    children: ReactNode;
+}) => {
+    return (
+        <div
+            className={classNames(
+                "mx-auto w-full max-w-screen-xl px-3 lg:px-10",
+                className,
+            )}
+        >
+            {children}
+        </div>
+    );
+};
+
+const Navbar = ({
+    maxWidthWrapperClassName,
+}: {
+    maxWidthWrapperClassName?: string;
+}) => {
+    const pathname = useLocation().pathname;
+
+    const dispatch = useDispatch();
+
+    const categories = useSelector(
+        (state: IRootState) => state.category.value.categories,
+    );
+
+    const { data, isFetching, isError, isSuccess } = useQuery<ApiNavbarResp>(
+        "Categories",
+        loadNavbarResp,
+    );
+
+    useEffect(() => {
+        if (data?.getAllCategories) {
+            const categories = data.getAllCategories;
+            dispatch(
+                setCategories({
+                    categories: categories,
+                }),
+            );
+        }
+    }, [data, dispatch]);
+
+    return (
+        <div className="bg-neutral-800 sticky top-0">
+            <LayoutGroup id={useId()}>
+                <div className={classNames("top-0 z-30 transition-all")}>
+                    <div
+                        className={classNames(
+                            "absolute inset-0 block border-b border-transparent transition-all",
+                        )}
+                    />
+
+                    <MaxWidthWrapper
+                        className={classNames(
+                            "relative",
+                            maxWidthWrapperClassName,
+                        )}
+                    >
+                        <div className="flex h-20 items-center justify-between gap-2">
+                            <Logo />
+
+                            {pathname === "/" && (
+                                <NavItems categories={categories} />
+                            )}
+
+                            {pathname === "/" && <NavButtons />}
+                        </div>
+                    </MaxWidthWrapper>
+                </div>
+            </LayoutGroup>
+        </div>
+    );
+};
+
+export default Navbar;
