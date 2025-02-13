@@ -35,7 +35,7 @@ const OrderPage = () => {
                 category: product.category.name,
                 name: product.name,
                 price: product.price,
-                quantity: product.quantity,
+                quantity: 0,
                 unit: product.unit,
             }));
 
