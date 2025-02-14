@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Button, { buttonVariants } from "../Button";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+// import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 
 const NavButtons = () => {
@@ -18,7 +18,7 @@ const NavButtons = () => {
                 <AdminPanelSettingsOutlinedIcon />
             </Button>
 
-            <Button
+            {/* <Button
                 className={classNames(
                     buttonVariants({
                         variant: "secondary",
@@ -28,7 +28,7 @@ const NavButtons = () => {
                 linkTo="cart"
             >
                 <ShoppingBagOutlinedIcon fontSize={"medium"} />
-            </Button>
+            </Button> */}
         </div>
     );
 };
