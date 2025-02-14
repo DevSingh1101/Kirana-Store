@@ -4,6 +4,7 @@ import productReducer from "../features/product/productSlice";
 import customerReducer from "../features/customer/customerSlice";
 import categoryReducer from "../features/category/categorySlice";
 import cartReducer from "../features/cart/cartSlice";
+import { saveState } from "./localStore";
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,9 @@ export const store = configureStore({
         cart: cartReducer,
     },
 });
+
+// store.subscribe(() => {
+//     saveState(store.getState());
+// });
 
 export type IRootState = ReturnType<typeof store.getState>;
