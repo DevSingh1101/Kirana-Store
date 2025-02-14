@@ -75,7 +75,7 @@ const OrderPage = () => {
 
     if (isError) {
         return (
-            <div className="h-[90vh] w-[100vw] flex flex-col items-center justify-center">
+            <div className="h-[90vh] w-[100vw] grid grid-cols-1 align-middle">
                 <div role="alert">
                     <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                         ERROR
@@ -93,7 +93,7 @@ const OrderPage = () => {
             {isLoading ? (
                 <Loader />
             ) : (
-                <div className="">
+                <div className="flex flex-col justify-between">
                     <div className="h-[80vh] sm:h-[70vh] md:h-[55vh] lg:h-[80vh] overflow-y-auto">
                         {Array.from(categoriesMap.entries()).map(
                             ([category, products]) => (
@@ -163,7 +163,7 @@ const ProductRow = ({ product }: { product: IProduct }) => {
             <span className="text-md sm:text-lg font-semibold">
                 {product.name}
             </span>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2">
                 <input
                     type="text"
                     placeholder="Enter Quantity"

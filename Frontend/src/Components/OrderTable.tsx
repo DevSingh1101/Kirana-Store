@@ -24,7 +24,7 @@ const OrderTable = ({
     }, []);
 
     const myTheme = themeAlpine.withParams({
-        spacing: 12,
+        spacing: 10,
         accentColor: "orange",
         backgroundColor: "inherit",
         fontFamily: "inherit",
@@ -45,15 +45,15 @@ const OrderTable = ({
     }, []);
 
     return (
-        <div className="h-[60vh] w-full">
+        <div className="h-[60vh] w-full p-4">
             <AgGridReact
                 theme={myTheme}
                 rowData={products}
                 columnDefs={columns}
                 defaultColDef={defaultColDef}
                 pagination={true}
-                paginationPageSize={5}
-                paginationPageSizeSelector={[5, 10, 20, 50, 100]}
+                paginationPageSize={10}
+                paginationPageSizeSelector={[10, 20, 50, 100]}
                 onCellValueChanged={onCellValueChanged}
             />
         </div>

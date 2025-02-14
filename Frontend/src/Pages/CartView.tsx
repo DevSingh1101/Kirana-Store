@@ -38,21 +38,25 @@ const CartView = () => {
     const columnDefs: ColDef[] = [
         {
             field: "category",
+            flex: 2,
         },
         {
             field: "name",
+            flex: 2,
         },
         {
             field: "quantity",
             sortable: true,
+            flex: 1,
         },
         {
             field: "unit",
+            flex: 1,
         },
     ];
 
     function handleBtnClick() {
-        const ordersUrl = cartProducts
+        const ordersUrl = cartItems
             ?.map((product) => {
                 return {
                     name: product.name,
