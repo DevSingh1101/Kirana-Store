@@ -89,12 +89,12 @@ const OrderPage = () => {
     }
 
     return (
-        <div className="h-[90vh] grid grid-cols-1 align-middle rounded-xl gap-4">
+        <div className="h-[80vh] sm:h-[80vh] md:h-[55vh] lg:h-[80vh] xl:h-[80vh] grid grid-cols-1 align-middle rounded-xl">
             {isLoading ? (
                 <Loader />
             ) : (
                 <div className="flex flex-col justify-between">
-                    <div className="h-[80vh] sm:h-[70vh] md:h-[55vh] lg:h-[80vh] overflow-y-auto">
+                    <div className="h-[70vh] sm:h-[60vh] md:h-[50vh] lg:h-[70vh] xl:h-[70vh] overflow-y-auto">
                         {Array.from(categoriesMap.entries()).map(
                             ([category, products]) => (
                                 <CategorySection
@@ -110,7 +110,7 @@ const OrderPage = () => {
                             data-ripple-light="true"
                             className={classNames(
                                 buttonVariants({ variant: "primary" }),
-                                "rounded-full w-fit py-2 px-10 bg-neutral-700 dark:text-white hover:bg-neutral-800",
+                                "rounded-full w-fit py-2 px-10 bg-neutral-700 dark:text-white hover:bg-neutral-800 mt-auto",
                             )}
                             type="button"
                             onClick={handleConfirmClick}
@@ -165,17 +165,18 @@ const ProductRow = ({ product }: { product: IProduct }) => {
             </span>
             <div className="grid grid-cols-2">
                 <input
-                    type="text"
+                    type="number"
                     placeholder="Enter Quantity"
                     value={product.quantity}
                     className="input input-bordered input-info w-full max-w-xs"
                     onChange={(e) => {
                         const quantity = Number.parseFloat(e.target.value);
-                        if (!isNaN(quantity)) {
-                            dispatch(
-                                updateQuantity({ id: product.id, quantity }),
-                            );
-                        }
+                        dispatch(
+                            updateQuantity({
+                                id: product.id,
+                                quantity: isNaN(quantity) ? "" : quantity,
+                            }),
+                        );
                     }}
                 />
                 <select

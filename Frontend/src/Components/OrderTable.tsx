@@ -51,10 +51,10 @@ const OrderTable = ({
                 rowData={products}
                 columnDefs={columns}
                 defaultColDef={defaultColDef}
-                pagination={true}
-                paginationPageSize={10}
-                paginationPageSizeSelector={[10, 20, 50, 100]}
-                onCellValueChanged={onCellValueChanged}
+                // pagination={true}
+                // paginationPageSize={10}
+                // paginationPageSizeSelector={[10, 20, 50, 100]}
+                // onCellValueChanged={onCellValueChanged}
             />
         </div>
     );

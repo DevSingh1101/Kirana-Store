@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from "react-redux";
-import OrderTable from "../components/OrderTable";
 import { updateAddress, updateName } from "../features/customer/customerSlice";
 import classNames from "classnames";
 import { WhatsApp } from "@mui/icons-material";
 import { IRootState } from "../redux/store";
 import { ColDef } from "ag-grid-community";
 import { buttonVariants } from "../components/Button";
+import CartForm from "../components/CartForm";
 
 const CartView = () => {
     const dispatch = useDispatch();
@@ -77,10 +77,11 @@ const CartView = () => {
     }
 
     return (
-        <div className="flex flex-col items-center p-4">
-            <OrderTable products={cartItems} columns={columnDefs} />
+        <div className="flex flex-col items-center px-6">
+            {/* <OrderTable products={cartItems} columns={columnDefs} /> */}
+            <CartForm />
 
-            <div className="flex items-center justify-center gap-4 p-2 shadow-lg w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-2 shadow-lg w-full">
                 <input
                     type="text"
                     placeholder="Name"
@@ -98,7 +99,6 @@ const CartView = () => {
 
             <div className="p-4">
                 <button
-                    data-ripple-light="true"
                     className={classNames(
                         buttonVariants({
                             variant: "primary",
