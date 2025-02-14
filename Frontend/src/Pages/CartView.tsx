@@ -5,18 +5,12 @@ import { updateAddress, updateName } from "../features/customer/customerSlice";
 import classNames from "classnames";
 import { WhatsApp } from "@mui/icons-material";
 import { IRootState } from "../redux/store";
-import { IProduct } from "../types";
 import { ColDef } from "ag-grid-community";
 import { buttonVariants } from "../components/Button";
 
 const CartView = () => {
     const dispatch = useDispatch();
-
-    const cartProducts: IProduct[] = useSelector(
-        (state: IRootState) => state.product.value.products,
-    ).filter((product: IProduct) => {
-        return product.quantity > 0;
-    });
+    const cartItems = useSelector((state: IRootState) => state.cart.items);
 
     const { name, address } = useSelector((state: IRootState) => {
         return {
@@ -80,7 +74,7 @@ const CartView = () => {
 
     return (
         <div className="flex flex-col items-center p-4">
-            <OrderTable products={cartProducts} columns={columnDefs} />
+            <OrderTable products={cartItems} columns={columnDefs} />
 
             <div className="flex items-center justify-center gap-4 p-2 shadow-lg w-full">
                 <input

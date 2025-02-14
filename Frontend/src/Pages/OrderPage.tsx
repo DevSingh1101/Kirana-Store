@@ -16,6 +16,7 @@ import { IRootState } from "../redux/store";
 import Loader from "../components/Loader";
 import { setLoading } from "../features/mainSlice";
 import { buttonVariants } from "../components/Button";
+import { setCartItems } from "../features/cart/cartSlice";
 
 const OrderPage = () => {
     const { data, isLoading, isError } = useQuery<ApiOrderPageResp>(
@@ -58,6 +59,20 @@ const OrderPage = () => {
         return map;
     }, [products]);
 
+    const handleConfirmClick = () => {
+        const cartItems = products.filter((product) => {
+            return product.quantity > 0;
+        });
+
+        dispatch(
+            setCartItems({
+                products: cartItems,
+            }),
+        );
+
+        navigate("/cart");
+    };
+
     if (isError) {
         return (
             <div className="h-[90vh] w-[100vw] flex flex-col items-center justify-center">
@@ -78,8 +93,8 @@ const OrderPage = () => {
             {isLoading ? (
                 <Loader />
             ) : (
-                <>
-                    <div className="h-[80vh] overflow-y-auto">
+                <div className="">
+                    <div className="h-[80vh] sm:h-[70vh] md:h-[55vh] lg:h-[80vh] overflow-y-auto">
                         {Array.from(categoriesMap.entries()).map(
                             ([category, products]) => (
                                 <CategorySection
@@ -98,12 +113,12 @@ const OrderPage = () => {
                                 "rounded-full w-fit py-2 px-10 bg-neutral-700 dark:text-white hover:bg-neutral-800",
                             )}
                             type="button"
-                            onClick={() => navigate("/cart")}
+                            onClick={handleConfirmClick}
                         >
                             Confirm
                         </button>
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
@@ -125,7 +140,7 @@ const CategorySection = ({
                 {category}
             </h1>
             <div className="grid grid-cols-1 gap-6 w-full sm:w-4/5 p-8 mx-auto">
-                <div className="grid grid-cols-2 text-md text-gray-400 font-semibold">
+                <div className="grid grid-cols-2 text-sm sm:text-md text-gray-300 font-semibold">
                     <h1>Name</h1>
                     <div className="grid grid-cols-2">
                         <h1>Quantity</h1>
@@ -144,9 +159,11 @@ const ProductRow = ({ product }: { product: IProduct }) => {
     const dispatch = useDispatch();
 
     return (
-        <div className="grid grid-cols-2">
-            <span className="text-lg font-semibold">{product.name}</span>
-            <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 align-middle items-center">
+            <span className="text-md sm:text-lg font-semibold">
+                {product.name}
+            </span>
+            <div className="grid grid-cols-2 gap-2">
                 <input
                     type="text"
                     placeholder="Enter Quantity"
@@ -162,7 +179,7 @@ const ProductRow = ({ product }: { product: IProduct }) => {
                     }}
                 />
                 <select
-                    className="select select-bordered w-full max-w-xs"
+                    className="select select-bordered w-full max-w-24"
                     defaultValue={product.unit}
                     onChange={(e) =>
                         dispatch(
