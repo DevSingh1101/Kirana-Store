@@ -11,7 +11,7 @@ const NavButtons = () => {
                     buttonVariants({
                         variant: "secondary",
                     }),
-                    "rounded-full p-3 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700",
+                    "rounded-full p-3 text-black bg-transparent hover:bg-neutral-700/50",
                 )}
                 linkTo="admin"
             >

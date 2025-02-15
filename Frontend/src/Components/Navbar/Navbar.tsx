@@ -51,7 +51,7 @@ const Navbar = ({
     );
 
     useEffect(() => {
-        if (data?.getAllCategories) {
+        if (data?.getAllCategories && categories.length == 0) {
             const categories = data.getAllCategories;
             dispatch(
                 setCategories({
@@ -59,10 +59,10 @@ const Navbar = ({
                 }),
             );
         }
-    }, [data, dispatch]);
+    }, [categories.length, data, dispatch]);
 
     return (
-        <div className="bg-neutral-800 sticky top-0">
+        <div className="sticky top-0 border-b border-black">
             <LayoutGroup id={useId()}>
                 <div className={classNames("top-0 z-30 transition-all")}>
                     <div
@@ -82,8 +82,10 @@ const Navbar = ({
 
                             {isError && (
                                 <Toast
-                                    type={toastVariants({variant: "error"})}
-                                    message={`Error fetching categories due to ${(error as Error).name}`}
+                                    type={toastVariants({ variant: "error" })}
+                                    message={`Error fetching categories due to ${
+                                        (error as Error).name
+                                    }`}
                                 />
                             )}
                             {isSuccess && (

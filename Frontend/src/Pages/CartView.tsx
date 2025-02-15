@@ -84,7 +84,7 @@ const CartView = () => {
             </div>
 
             <div className="flex gap-4 p-4">
-                <BackButton text="Back" />
+                <BackButton text="Back" onClick={handleBackBtnClick} />
                 <button
                     className={classNames(
                         buttonVariants({

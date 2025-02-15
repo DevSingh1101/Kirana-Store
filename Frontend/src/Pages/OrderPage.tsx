@@ -75,12 +75,12 @@ const OrderPage = () => {
 
     if (isError) {
         return (
-            <div className="h-[90vh] w-full grid grid-cols-1 align-middle">
+            <div className="flex flex-col items-center justify-center h-full">
                 <div role="alert">
-                    <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                    <div className="bg-red-500 text-white font-bold rounded-t-xl px-4 py-2">
                         ERROR
                     </div>
-                    <div className="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                    <div className="border border-t-0 border-red-700 rounded-b-xl bg-red-100 px-10 py-3 text-red-700">
                         <p>Contact site admin to resolve this</p>
                     </div>
                 </div>
@@ -89,12 +89,12 @@ const OrderPage = () => {
     }
 
     return (
-        <div className="h-[80vh] sm:h-[80vh] md:h-[55vh] lg:h-[80vh] xl:h-[80vh] grid grid-cols-1 align-middle">
+        <div className="h-full grid grid-cols-1 align-middle">
             {isLoading ? (
                 <Loader />
             ) : (
-                <div className="flex flex-col justify-between">
-                    <div className="h-[70vh] sm:h-[60vh] md:h-[50vh] lg:h-[70vh] xl:h-[70vh] overflow-y-auto">
+                <div className="flex flex-col gap-4 items-center">
+                    <div className="h-[75vh] overflow-y-auto">
                         {Array.from(categoriesMap.entries()).map(
                             ([category, products]) => (
                                 <CategorySection
@@ -110,7 +110,7 @@ const OrderPage = () => {
                             data-ripple-light="true"
                             className={classNames(
                                 buttonVariants({ variant: "primary" }),
-                                "rounded-full w-fit py-2 px-10 bg-neutral-700 dark:text-white hover:bg-neutral-800 mt-auto",
+                                "rounded-full w-fit py-2 px-8 bg-neutral-700 text-white hover:bg-neutral-800 my-auto",
                             )}
                             type="button"
                             onClick={handleConfirmClick}
@@ -132,15 +132,15 @@ const CategorySection = ({
     products: IProduct[];
 }) => {
     return (
-        <div className="grid grid-cols-1 gap-2">
+        <div className="grid grid-cols-1 gap-2 border border-gray-500">
             <h1
                 id={category.toUpperCase()}
-                className="h-16 text-2xl font-bold flex justify-center items-center"
+                className="h-16 text-xl sm:text-2xl font-bold flex justify-center items-center bg-gradient-to-r text-black"
             >
                 {category}
             </h1>
             <div className="grid grid-cols-1 gap-6 w-full sm:w-4/5 p-8 mx-auto">
-                <div className="grid grid-cols-2 text-sm sm:text-md text-gray-300 font-semibold">
+                <div className="grid grid-cols-2 text-sm sm:text-md text-black font-semibold">
                     <h1>Name</h1>
                     <div className="grid grid-cols-2">
                         <h1>Quantity</h1>
@@ -160,15 +160,18 @@ const ProductRow = ({ product }: { product: IProduct }) => {
 
     return (
         <div className="grid grid-cols-2 align-middle items-center">
-            <span className="text-md sm:text-lg font-semibold">
+            <span className="text-md sm:text-lg font-semibold text-gray-500">
                 {product.name}
             </span>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 gap-2">
                 <input
-                    type="number"
+                    type="text"
                     placeholder="Enter Quantity"
                     value={product.quantity}
-                    className="input input-bordered input-info w-full max-w-xs"
+                    className="input input-bordered input-info w-full max-w-xs bg-transparent"
+                    onWheelCapture={(e) => {
+                        e.currentTarget.blur();
+                    }}
                     onChange={(e) => {
                         const quantity = Number.parseFloat(e.target.value);
                         dispatch(
@@ -180,7 +183,7 @@ const ProductRow = ({ product }: { product: IProduct }) => {
                     }}
                 />
                 <select
-                    className="select select-bordered w-full max-w-24"
+                    className="select select-bordered w-full max-w-24 bg-transparent"
                     defaultValue={product.unit}
                     onChange={(e) =>
                         dispatch(

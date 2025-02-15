@@ -8,7 +8,12 @@ const Layout = () => {
     const loading = useSelector((state: IRootState) => state.main.loading);
 
     return (
-        <div className={classNames("flex flex-col justify-between")}>
+        <div
+            className={classNames(
+                "h-[100vh] bg-gradient-to-br from-cyan-200 via-white to-cyan-200",
+                "flex flex-col",
+            )}
+        >
             <Navbar />
             <Outlet />
         </div>

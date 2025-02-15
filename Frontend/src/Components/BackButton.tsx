@@ -1,7 +1,13 @@
 import classNames from "classnames";
 import { buttonVariants } from "./Button";
 
-const BackButton = ({ text }: { text: string }) => {
+const BackButton = ({
+    text,
+    onClick,
+}: {
+    text: string;
+    onClick: () => void;
+}) => {
     return (
         /* From Uiverse.io by AKAspidey01 */
         <button
@@ -11,6 +17,7 @@ const BackButton = ({ text }: { text: string }) => {
                 "bg-neutral-700 text-white hover:bg-neutral-800",
             )}
             type="button"
+            onClick={onClick}
         >
             <div className="bg-gray-400 rounded-full h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
                 <svg
