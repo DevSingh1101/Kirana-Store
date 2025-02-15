@@ -30,7 +30,7 @@ const OrderPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (data?.getAllProducts) {
+        if (data?.getAllProducts && products.length === 0) {
             const productResponse = data.getAllProducts.map((product) => ({
                 id: product.id,
                 category: product.category.name,
@@ -42,7 +42,7 @@ const OrderPage = () => {
 
             dispatch(setProducts({ products: productResponse }));
         }
-    }, [data, dispatch]);
+    }, [data, dispatch, products.length]);
 
     useEffect(() => {
         setLoading({ loading: true });
@@ -75,7 +75,7 @@ const OrderPage = () => {
 
     if (isError) {
         return (
-            <div className="h-[90vh] w-[100vw] grid grid-cols-1 align-middle">
+            <div className="h-[90vh] w-full grid grid-cols-1 align-middle">
                 <div role="alert">
                     <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                         ERROR
@@ -89,7 +89,7 @@ const OrderPage = () => {
     }
 
     return (
-        <div className="h-[80vh] sm:h-[80vh] md:h-[55vh] lg:h-[80vh] xl:h-[80vh] grid grid-cols-1 align-middle rounded-xl">
+        <div className="h-[80vh] sm:h-[80vh] md:h-[55vh] lg:h-[80vh] xl:h-[80vh] grid grid-cols-1 align-middle">
             {isLoading ? (
                 <Loader />
             ) : (
