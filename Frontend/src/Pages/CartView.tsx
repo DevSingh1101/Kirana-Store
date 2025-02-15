@@ -4,13 +4,15 @@ import { updateAddress, updateName } from "../features/customer/customerSlice";
 import classNames from "classnames";
 import { WhatsApp } from "@mui/icons-material";
 import { IRootState } from "../redux/store";
-import { ColDef } from "ag-grid-community";
 import { buttonVariants } from "../components/Button";
 import CartForm from "../components/CartForm";
+import { useNavigate } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 const CartView = () => {
     const dispatch = useDispatch();
     const cartItems = useSelector((state: IRootState) => state.cart.items);
+    const navigate = useNavigate();
 
     const { name, address } = useSelector((state: IRootState) => {
         return {
@@ -35,27 +37,7 @@ const CartView = () => {
         );
     }
 
-    const columnDefs: ColDef[] = [
-        {
-            field: "category",
-            flex: 2,
-        },
-        {
-            field: "name",
-            flex: 2,
-        },
-        {
-            field: "quantity",
-            sortable: true,
-            flex: 1,
-        },
-        {
-            field: "unit",
-            flex: 1,
-        },
-    ];
-
-    function handleBtnClick() {
+    function handleSendWhatsapp() {
         const ordersUrl = cartItems
             ?.map((product) => {
                 return {
@@ -76,12 +58,16 @@ const CartView = () => {
         window.open(redirectUrl);
     }
 
+    function handleBackBtnClick() {
+        navigate("/");
+    }
+
     return (
         <div className="flex flex-col items-center px-6">
             {/* <OrderTable products={cartItems} columns={columnDefs} /> */}
             <CartForm />
 
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-2 shadow-lg w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-2 shadow-lg w-full">
                 <input
                     type="text"
                     placeholder="Name"
@@ -97,7 +83,8 @@ const CartView = () => {
                 ></textarea>
             </div>
 
-            <div className="p-4">
+            <div className="flex gap-4 p-4">
+                <BackButton text="Back" />
                 <button
                     className={classNames(
                         buttonVariants({
@@ -107,7 +94,7 @@ const CartView = () => {
                         "bg-neutral-700 dark:text-white hover:bg-neutral-800 group",
                     )}
                     type="button"
-                    onClick={handleBtnClick}
+                    onClick={handleSendWhatsapp}
                 >
                     Send to Whatsapp{" "}
                     <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
