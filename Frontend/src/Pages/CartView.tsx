@@ -63,21 +63,21 @@ const CartView = () => {
     }
 
     return (
-        <div className="flex flex-col items-center px-6">
+        <div className="h-full flex flex-col items-center px-6">
             {/* <OrderTable products={cartItems} columns={columnDefs} /> */}
             <CartForm />
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-2 shadow-lg w-full">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-2 shadow-lg w-full max-w-screen-lg rounded-xl">
                 <input
                     type="text"
                     placeholder="Name"
-                    className="input input-bordered input-primary w-full max-w-lg"
+                    className="input input-bordered input-primary w-full max-w-lg bg-transparent"
                     value={name}
                     onChange={(e) => handleNameChange(e.target.value)}
                 />
                 <textarea
                     placeholder="Address"
-                    className="textarea textarea-bordered textarea-lg w-full max-w-2xl"
+                    className="textarea textarea-bordered textarea-md w-full max-w-screen-sm bg-transparent"
                     value={address}
                     onChange={(e) => handleAddressChange(e.target.value)}
                 ></textarea>
