@@ -7,6 +7,10 @@ import classNames from "classnames";
 const Layout = () => {
     const loading = useSelector((state: IRootState) => state.main.loading);
 
+    if (loading) {
+        return <div>Will do</div>;
+    }
+
     return (
         <div
             className={classNames(

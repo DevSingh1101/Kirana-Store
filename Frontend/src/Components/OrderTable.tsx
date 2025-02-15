@@ -54,7 +54,7 @@ const OrderTable = ({
                 // pagination={true}
                 // paginationPageSize={10}
                 // paginationPageSizeSelector={[10, 20, 50, 100]}
-                // onCellValueChanged={onCellValueChanged}
+                onCellValueChanged={onCellValueChanged}
             />
         </div>
     );

@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useCreateCategory } from "../graphql/resolvers";
-import { create } from "@mui/material/styles/createTransitions";
 
 const CategoryForm = ({
     closeCategoryForm,
