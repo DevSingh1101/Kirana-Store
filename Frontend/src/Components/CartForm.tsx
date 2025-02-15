@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import { resetCartItems } from "../features/cart/cartSlice";
+import { resetProducts } from "../features/product/productSlice";
 
 const CartForm = () => {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const CartForm = () => {
     ) => {
         e.preventDefault();
         dispatch(resetCartItems());
+        dispatch(resetProducts());
     };
 
     return (
@@ -21,16 +23,16 @@ const CartForm = () => {
                 </span>{" "}
                 - {cartItems.length}
             </div>
-            <div className="flex justify-between p-4">
+            <div className="flex justify-center p-4">
                 <button
                     className="cursor-pointer hover:text-neutral-500"
                     onClick={(e) => handleDelete(e)}
                 >
-                    Delete
+                    Empty cart
                 </button>
                 <div className="divider divider-horizontal divider-neutral"></div>
                 <button className="cursor-pointer hover:text-neutral-500">
-                    Save
+                    Save cart
                 </button>
             </div>
             <div className="flex items-center col-span-2 justify-center">

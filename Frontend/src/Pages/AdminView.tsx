@@ -77,7 +77,7 @@ const AdminView = () => {
 
     if (isError) {
         return (
-            <div className="h-[90vh] w-[100vw] flex flex-col items-center justify-center">
+            <div className="h-[90vh] w-full flex flex-col items-center justify-center">
                 <div role="alert">
                     <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
                         ERROR

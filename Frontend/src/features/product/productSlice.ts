@@ -13,6 +13,9 @@ export const productSlice = createSlice({
         setLoading: (state, action) => {
             state.value.isLoading = action.payload.isLoading;
         },
+        resetProducts: (state) => {
+            state.value.products = [];
+        },
         setProducts: (state, action) => {
             state.value.products = action.payload.products;
         },
@@ -35,7 +38,7 @@ export const productSlice = createSlice({
     },
 });
 
-export const { setLoading, setProducts, updateQuantity, updateUnit } =
+export const { setLoading, setProducts, resetProducts, updateQuantity, updateUnit } =
     productSlice.actions;
 
 export default productSlice.reducer;
