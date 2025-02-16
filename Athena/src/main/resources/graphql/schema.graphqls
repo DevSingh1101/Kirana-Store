@@ -1,3 +1,4 @@
+# noinspection GraphQLUnresolvedReference
 # Query to fetch all products
 type Query {
     # Product
@@ -9,14 +10,6 @@ type Query {
     getCategoryByName(name: String): Category
 }
 
-# Mutations to create new products and categories
-type Mutation {
-    createProduct(input: ProductInput!): Product
-    createCategory(name: String!): Category
-    deleteCategory(name: String!): Category
-}
-
-# Product Type Definition
 type Product {
     id: ID
     category: Category
@@ -26,10 +19,19 @@ type Product {
     unit: String
 }
 
-# Category Type Definition
 type Category {
     id: ID
     name: String
+}
+
+# Mutations to create new products and categories
+type Mutation {
+    # Product
+    createProduct(input: ProductInput!): Product
+
+    # Category
+    createCategory(name: String!): Category
+    deleteCategory(name: String!): Category
 }
 
 # Input Type for Product Creation
