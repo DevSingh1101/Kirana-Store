@@ -24,7 +24,7 @@ public class CategoryService {
     }
 
     public Optional<Category> getCategoryByName(String name) {
-        Example<Category> example = Example.of(new Category(null, name));
+        final Example<Category> example = Example.of(new Category(name));
         return categoryRepository.findOne(example);
     }
 
@@ -32,7 +32,7 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public void deleteCategory(String id) {
-        categoryRepository.deleteById(id);
+    public Category deleteCategory(String name) {
+        return categoryRepository.deleteByName(name);
     }
 }

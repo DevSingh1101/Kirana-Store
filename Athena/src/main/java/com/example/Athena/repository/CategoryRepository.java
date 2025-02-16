@@ -7,5 +7,5 @@ import com.example.Athena.model.Category;
 
 @Repository
 public interface CategoryRepository extends MongoRepository<Category, String> {
-
+    Category deleteByName(String name);
 }

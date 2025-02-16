@@ -13,6 +13,7 @@ type Query {
 type Mutation {
     createProduct(input: ProductInput!): Product
     createCategory(name: String!): Category
+    deleteCategory(name: String!): Category
 }
 
 # Product Type Definition

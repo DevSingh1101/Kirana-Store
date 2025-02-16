@@ -11,10 +11,16 @@ import lombok.Setter;
 @Document(collection = "categories")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Category {
     @Id
     private String id;
     private String name;
+
+    public Category() {
+        this.name = "";
+    }
+
+    public Category(final String name) {
+        this.name = name;
+    }
 }

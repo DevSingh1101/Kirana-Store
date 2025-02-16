@@ -29,6 +29,12 @@ public class CategoryGraphQL {
 
     @MutationMapping
     public Category createCategory(@Argument("name") String name) {
-        return categoryService.createCategory(new Category(null, name));
+        return categoryService.createCategory(new Category(name));
+    }
+
+    @MutationMapping
+    public Category deleteCategory(@Argument("name") String name) {
+        return categoryService.deleteCategory(name);
+
     }
 }

@@ -8,8 +8,8 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.example.Athena.DTO.ProductDTO;
 import com.example.Athena.model.Product;
+import com.example.Athena.security.dto.Product.CreateProduct;
 import com.example.Athena.service.ProductService;
 
 @Controller
@@ -34,7 +34,9 @@ public class ProductGraphQL {
     // }
 
     @MutationMapping
-    public Product createProduct(@Argument("input") ProductDTO input) {
+    public Product createProduct(@Argument("input") CreateProduct input) {
         return productService.createProduct(input);
     }
+
+    
 }
