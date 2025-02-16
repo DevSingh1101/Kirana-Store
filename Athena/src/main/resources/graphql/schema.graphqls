@@ -3,7 +3,7 @@
 type Query {
     # Product
     getAllProducts: [Product]
-    getProductByCategoryId(categoryId: String): [Product]
+    getProductsByCategoryId(categoryId: String): [Product]
 
     # Category
     getAllCategories: [Category]
