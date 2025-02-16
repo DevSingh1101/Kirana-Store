@@ -15,7 +15,7 @@ import com.example.Athena.service.ProductService;
 @Controller
 public class ProductGraphQL {
     @Autowired
-    private ProductService productService;
+    public ProductService productService;
 
     @QueryMapping
     public List<Product> getAllProducts() {

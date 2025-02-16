@@ -15,10 +15,10 @@ import com.example.Athena.security.dto.Product.CreateProduct;
 @Service
 public class ProductService {
     @Autowired
-    private ProductRepository productRepository;
+    public ProductRepository productRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    public CategoryRepository categoryRepository;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();

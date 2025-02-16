@@ -13,7 +13,7 @@ import com.example.Athena.model.Category;
 @Service
 public class CategoryService {
     @Autowired
-    private CategoryRepository categoryRepository;
+    public CategoryRepository categoryRepository;
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();

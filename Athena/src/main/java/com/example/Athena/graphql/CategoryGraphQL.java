@@ -15,7 +15,7 @@ import com.example.Athena.service.CategoryService;
 @Controller
 public class CategoryGraphQL {
     @Autowired
-    private CategoryService categoryService;
+    public CategoryService categoryService;
 
     @QueryMapping
     public List<Category> getAllCategories() {
