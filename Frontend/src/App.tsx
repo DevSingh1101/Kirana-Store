@@ -2,7 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OrderPage from "./pages/OrderPage";
 import CartView from "./pages/CartView";
 import Layout from "./Layout";
-import AdminView from "./pages/AdminView";
+import AdminView from "./pages/Dashboard";
+import Login from "./pages/Login";
 
 function App() {
     const routes = createBrowserRouter([
@@ -21,7 +22,17 @@ function App() {
             ],
         },
         {
-            path: "/admin",
+            path: "/login",
+            element: <Layout />,
+            children: [
+                {
+                    path: "",
+                    element: <Login />,
+                },
+            ],
+        },
+        {
+            path: "/dashboard",
             element: <Layout />,
             children: [
                 {
