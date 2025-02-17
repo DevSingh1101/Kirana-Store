@@ -19,17 +19,18 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Optional<Category> getCategoryById(String id) {
+    public Optional<Category> getCategoryById(final String id) {
         return categoryRepository.findById(id);
     }
 
-    public Optional<Category> getCategoryByName(String name) {
+    public Optional<Category> getCategoryByName(final String name) {
         final Example<Category> example = Example.of(new Category(name));
         return categoryRepository.findOne(example);
     }
 
-    public Category createCategory(Category category) {
-        return categoryRepository.save(category);
+    public Category createCategory(final String name) {
+        final Category tempCategory = new Category(name);
+        return categoryRepository.save(tempCategory);
     }
 
     public Category deleteCategory(String name) {

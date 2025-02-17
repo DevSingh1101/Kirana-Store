@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -23,17 +24,17 @@ public class CategoryGraphQL {
     }
 
     @QueryMapping
-    public Optional<Category> getCategoryByName(@Argument("name") String name) {
+    public Optional<Category> getCategoryByName(@Argument("name") final String name) {
         return categoryService.getCategoryByName(name);
     }
 
     @MutationMapping
-    public Category createCategory(@Argument("name") String name) {
-        return categoryService.createCategory(new Category(name));
+    public Category createCategory(@Argument("name") final String name) {
+        return categoryService.createCategory(name);
     }
 
     @MutationMapping
-    public Category deleteCategory(@Argument("name") String name) {
+    public Category deleteCategory(@Argument("name") final String name) {
         return categoryService.deleteCategory(name);
 
     }
