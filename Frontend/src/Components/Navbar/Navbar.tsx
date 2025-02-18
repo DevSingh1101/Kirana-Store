@@ -94,7 +94,7 @@ const Navbar = ({
                                         <NavItems categories={categories} />
                                     )}
 
-                                    {pathname === "/" && <NavButtons />}
+                                    <NavButtons />
                                 </>
                             )}
                         </div>
