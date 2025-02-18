@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
-import { ApiOrderPageResp } from "../types";
+import { ApiHomePageResp } from "../types";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { loadOrderPageResp } from "../graphql/resolvers";
+import { loadHomePageResp } from "../graphql/resolvers";
 import { setProducts } from "../features/product/productSlice";
 import ProductForm from "../components/ProductForm";
 import Loader from "../components/Loader";
@@ -18,9 +18,9 @@ const AdminView = () => {
     const [productFormToggle, setProductFormToggle] = useState(false);
     const [categoryFormToggle, setCategoryFormToggle] = useState(false);
 
-    const { data, isLoading, isError, refetch } = useQuery<ApiOrderPageResp>(
+    const { data, isLoading, isError, refetch } = useQuery<ApiHomePageResp>(
         "Orders",
-        loadOrderPageResp,
+        loadHomePageResp,
     );
 
     const { accessToken } = useSelector((state: IRootState) => state.main);

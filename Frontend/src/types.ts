@@ -1,4 +1,4 @@
-export interface ApiOrderPageResp {
+export interface ApiHomePageResp {
     getAllProducts: {
         id: string;
         name: string;

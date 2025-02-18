@@ -1,33 +1,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useQuery } from "react-query";
+import classNames from "classnames";
 import { useEffect, useMemo } from "react";
-import { units } from "../Constants";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { IRootState } from "../redux/store";
 import {
     setProducts,
     updateQuantity,
     updateUnit,
 } from "../features/product/productSlice";
-import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
-import { useQuery } from "react-query";
-import { ApiOrderPageResp, IProduct } from "../types";
-import { loadOrderPageResp } from "../graphql/resolvers";
-import { IRootState } from "../redux/store";
+import { groupBy } from "lodash";
+import { units } from "../Constants";
+import { ApiHomePageResp, IProduct } from "../types";
+import { loadHomePageResp } from "../graphql/resolvers";
 import Loader from "../components/Loader";
-import { setLoading } from "../features/mainSlice";
 import { buttonVariants } from "../components/Button";
 import { setCartItems } from "../features/cart/cartSlice";
 
 const OrderPage = () => {
-    const { data, isLoading, isError } = useQuery<ApiOrderPageResp>(
-        "Orders",
-        loadOrderPageResp,
-    );
+    // Dispatch, navigate
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    // State
     const products = useSelector(
         (state: IRootState) => state.product.value.products,
     );
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+
+    // API call
+    const { data, isLoading, isError } = useQuery<ApiHomePageResp>(
+        "Homepage",
+        loadHomePageResp,
+    );
 
     useEffect(() => {
         if (data?.getAllProducts && products.length === 0) {
@@ -44,19 +49,8 @@ const OrderPage = () => {
         }
     }, [data, dispatch, products.length]);
 
-    useEffect(() => {
-        setLoading({ loading: true });
-    }, [isLoading]);
-
     const categoriesMap = useMemo(() => {
-        const map = new Map<string, IProduct[]>();
-        products?.forEach((product: IProduct) => {
-            if (!map.get(product.category)) {
-                map.set(product.category, []);
-            }
-            map.get(product.category)?.push(product);
-        });
-        return map;
+        return groupBy(products, "category");
     }, [products]);
 
     const handleConfirmClick = () => {
@@ -95,7 +89,7 @@ const OrderPage = () => {
             ) : (
                 <div className="flex flex-col gap-4 items-center">
                     <div className="h-[75vh] overflow-y-auto">
-                        {Array.from(categoriesMap.entries()).map(
+                        {Object.entries(categoriesMap).map(
                             ([category, products]) => (
                                 <CategorySection
                                     key={category}

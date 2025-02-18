@@ -1,5 +1,5 @@
 import { request } from "graphql-request";
-import { ApiNavbarResp, ApiOrderPageResp } from "../types";
+import { ApiNavbarResp, ApiHomePageResp } from "../types";
 import {
     CREATE_CATEGORY_QUERY,
     CREATE_PRODUCT_QUERY,
@@ -9,7 +9,7 @@ import {
 import { API_ENDPOINT } from "../Constants";
 import { useMutation } from "react-query";
 
-export const loadOrderPageResp = (): Promise<ApiOrderPageResp> =>
+export const loadHomePageResp = (): Promise<ApiHomePageResp> =>
     request(API_ENDPOINT, ORDER_PAGE_QUERY);
 
 export const loadNavbarResp = (): Promise<ApiNavbarResp> =>
