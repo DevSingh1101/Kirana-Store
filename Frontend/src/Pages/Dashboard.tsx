@@ -12,6 +12,7 @@ import { ColDef } from "ag-grid-community";
 import CategoryForm from "../components/CategoryForm";
 import PlusIcon from "../components/PlusIcon";
 import SearchIcon from "../components/SearchIcon";
+import { useNavigate } from "react-router-dom";
 
 const AdminView = () => {
     const [productFormToggle, setProductFormToggle] = useState(false);
@@ -22,10 +23,19 @@ const AdminView = () => {
         loadOrderPageResp,
     );
 
+    const { accessToken } = useSelector((state: IRootState) => state.main);
+
     const products = useSelector(
         (state: IRootState) => state.product.value.products,
     );
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!accessToken) {
+            navigate("/login");
+        }
+    }, [accessToken, navigate]);
 
     useEffect(() => {
         if (data?.getAllProducts) {

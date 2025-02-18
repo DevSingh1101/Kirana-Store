@@ -1,22 +1,36 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { buttonVariants } from "../components/Button";
+import { IUser, setCredentials } from "../features/mainSlice";
 
 const Login = () => {
-    const { loggedIn } = useSelector((state: IRootState) => state.main);
+    const { accessToken } = useSelector((state: IRootState) => state.main);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (loggedIn) {
+        if (accessToken) {
             navigate("/dashboard");
         }
-    }, []);
+    }, [accessToken, navigate]);
 
     function handleLogin() {
         //will add login feature
+        const dummyUser: IUser = {
+            name: "Devang",
+            phoneNumber: "8114430657",
+            role: "ADMIN",
+        };
+
+        dispatch(
+            setCredentials({
+                user: dummyUser,
+                accessToken: "123",
+            }),
+        );
     }
 
     return (
