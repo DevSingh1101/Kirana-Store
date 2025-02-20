@@ -16,7 +16,7 @@ public class UserAuth {
 
     @PostMapping("/login")
     public User login(final CreateUser input) {
-        return userService.registerUser(input.getName(), input.getPhoneNumber());
+        return userService.saveUser(input.getName(), input.getPhoneNumber());
     }
 
     @PostMapping("/validate")

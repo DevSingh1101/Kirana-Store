@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User registerUser(final String name, final String phoneNumber) {
+    public User saveUser(final String name, final String phoneNumber) {
         final Optional<User> user = userRepository.findByPhoneNumber(phoneNumber);
 
         return user.orElseGet(() -> userRepository.save(new User(name, phoneNumber)));
